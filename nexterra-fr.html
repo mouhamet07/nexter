@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEXTERRA — Construire ce qui vient ensuite</title>
+<!-- À coller dans le <head> du site (Elementor > Réglages du site > Code personnalisé, ou Insert Headers/Footers) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" />
+
+<style>
+  :root{
+    --ivory:#F7F5F0; --navy:#111827; --terracotta:#D95D39; --cobalt:#4F6DFF; --sand:#E8D5B0;
+    --font-display:'Plus Jakarta Sans',sans-serif; --font-body:'Inter',sans-serif;
+    --space-section:clamp(44px,5vw,64px); --space-block:24px; --space-card:24px; --radius-card:12px;
+    --copy-light:#111827; --copy-dark:#fff; --muted-light:rgba(17,24,39,.68); --muted-dark:rgba(255,255,255,.72);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);background:var(--ivory);color:var(--navy);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--ivory);} ::-webkit-scrollbar-thumb{background:var(--terracotta);border-radius:2px;}
+  a{text-decoration:none;color:inherit;} button{font-family:inherit;}
+
+  .custom-cursor{pointer-events:none;position:fixed;top:0;left:0;width:18px;height:18px;border:1.5px solid var(--terracotta);border-radius:50%;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,opacity .25s;z-index:9999;mix-blend-mode:multiply;opacity:0;}
+  .custom-cursor.hover{width:44px;height:44px;background:rgba(217,93,57,.08);}
+  @media (max-width:768px){.custom-cursor{display:none!important;}}
+
+  @keyframes float-a{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-14px) rotate(1deg);}}
+  @keyframes float-b{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-10px) rotate(0deg);}}
+  @keyframes orbit-cw{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @keyframes orbit-ccw{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
+  @keyframes pulse-ring{0%,100%{opacity:.2;transform:scale(1);}50%{opacity:.5;transform:scale(1.04);}}
+  .float-a{animation:float-a 7s ease-in-out infinite;}
+  .float-b{animation:float-b 9s ease-in-out infinite;}
+
+  .reveal{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+  .reveal.pre{opacity:0;transform:translateY(28px);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .delay-100{transition-delay:.1s;} .delay-200{transition-delay:.2s;} .delay-300{transition-delay:.3s;} .delay-400{transition-delay:.4s;}
+
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--terracotta);color:#fff;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.02em;border-radius:4px;transition:.25s;border:none;cursor:pointer;}
+  .btn-primary:hover{background:#c44f2e;transform:translateY(-2px);box-shadow:0 12px 32px rgba(217,93,57,.35);}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;color:var(--navy);font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.02em;border:1.5px solid rgba(17,24,39,.2);border-radius:4px;transition:.25s;cursor:pointer;}
+  .btn-ghost:hover{border-color:var(--navy);background:rgba(17,24,39,.04);transform:translateY(-2px);}
+  .btn-ghost-light{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;color:#fff;font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.02em;border:1.5px solid rgba(255,255,255,.4);border-radius:4px;transition:.25s;cursor:pointer;}
+  .btn-ghost-light:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+  .btn-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--terracotta);background:none;border:1px solid rgba(217,93,57,.35);border-radius:6px;padding:8px 14px;cursor:pointer;font-family:var(--font-display);font-weight:600;transition:.2s;}
+  .btn-link:hover{background:rgba(217,93,57,.08);border-color:var(--terracotta);}
+  .btn-link.ghost-dark{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2);}
+  .btn-link.ghost-dark:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4);}
+
+  .display-xl{font-family:var(--font-display);font-size:clamp(36px,6vw,76px);font-weight:800;line-height:1;letter-spacing:-.02em;}
+  .display-lg{font-family:var(--font-display);font-size:clamp(28px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.02em;}
+  .display-md{font-family:var(--font-display);font-size:clamp(22px,2.8vw,34px);font-weight:700;line-height:1.1;letter-spacing:-.015em;}
+  .tag-label{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+
+  .nxt-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+  @media (min-width:768px){.nxt-wrap{padding:0 48px;}}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:.5s;}
+  header.scrolled{background:rgba(247,245,240,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(17,24,39,.08);}
+  .nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+  @media (min-width:768px){.nav-inner{height:80px;padding:0 48px;}}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.25rem;letter-spacing:-.04em;color:var(--navy);background:none;border:none;cursor:pointer;}
+  .nav-links{display:none;align-items:center;gap:32px;}
+  @media (min-width:768px){.nav-links{display:flex;}}
+  .nav-links button{background:none;border:none;cursor:pointer;color:rgba(17,24,39,.6);transition:.2s;}
+  .nav-links button:hover{color:var(--navy);}
+  .nav-cta{display:none;} @media (min-width:768px){.nav-cta{display:block;}}
+  .hamburger{display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;}
+  @media (min-width:768px){.hamburger{display:none;}}
+  .hamburger span{display:block;height:2px;width:24px;background:var(--navy);transition:.3s;}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translateY(8px);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translateY(-8px);}
+
+  .mobile-menu{display:none;position:fixed;inset:0;z-index:40;background:var(--ivory);flex-direction:column;padding:80px 24px 32px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu nav{display:flex;flex-direction:column;gap:32px;margin-top:32px;}
+  .mobile-menu nav button{background:none;border:none;text-align:left;cursor:pointer;font-family:var(--font-display);font-size:clamp(28px,4vw,52px);font-weight:700;color:var(--navy);}
+  .mobile-menu .mt-auto{margin-top:auto;}
+
+  /* ── Services grid (rebuilt, mobile-first, no overlap) ── */
+  .services-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+  .service-card{border-radius:var(--radius-card);padding:var(--space-card);min-height:220px;display:flex;flex-direction:column;text-align:left;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease;position:relative;overflow:hidden;cursor:pointer;}
+  .service-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(17,24,39,.15);}
+  .service-card.dark{background:var(--navy);}
+  .service-card.light{background:#fff;border:1px solid rgba(17,24,39,.1);}
+  .service-card.orange{background:var(--terracotta);}
+  .service-card.sand{background:var(--ivory);border:1px solid rgba(17,24,39,.1);}
+  .service-card > p{margin-top:auto;}
+  .service-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;}
+  .service-heading{display:flex;align-items:center;gap:12px;}
+  .service-icon{width:36px;height:36px;border:1px solid currentColor;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+  .service-card h3{font-size:clamp(19px,2vw,26px);line-height:1.05;margin:0 0 10px;font-family:var(--font-display);}
+  .service-card p{font-size:14px;line-height:1.55;max-width:34rem;}
+  .service-arrow{width:32px;height:32px;border-radius:50%;border:1px solid rgba(17,24,39,.2);display:flex;align-items:center;justify-content:center;color:rgba(17,24,39,.4);font-size:14px;flex-shrink:0;}
+  .service-arrow.light{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7);}
+  @media (min-width:1024px){
+    .services-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-rows:repeat(2,minmax(220px,1fr));
+      grid-template-areas:"one two" "three four";
+    }
+    .service-card.light{grid-area:one;}
+    .service-card.orange{grid-area:two;}
+    .service-card.dark{grid-area:three;}
+    .service-card.sand{grid-area:four;}
+  }
+
+  .work-card{background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:var(--radius-card);padding:24px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease;}
+  .work-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(17,24,39,.12);}
+  .work-card.dark{background:var(--navy);border-color:transparent;}
+  .work-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+
+  .process-line-fill{transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.16,1,.3,1);}
+  .process-line-fill.in{transform:scaleX(1);}
+  .process-desktop{display:none;}
+  .process-track{position:relative;margin-bottom:0;}
+  .process-track-bg{height:1px;width:100%;background:rgba(17,24,39,.1);}
+  .process-track-fill{position:absolute;top:0;left:0;height:1px;background:var(--terracotta);width:100%;}
+  .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:-6px;}
+  .process-step{display:flex;flex-direction:column;}
+  .process-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--terracotta);background:var(--ivory);margin-bottom:24px;}
+
+  .form-field{display:flex;flex-direction:column;gap:6px;}
+  .form-field label{color:rgba(17,24,39,.5);}
+  .form-field input,.form-field select,.form-field textarea{width:100%;background:#fff;border:1px solid rgba(17,24,39,.1);border-radius:8px;padding:12px 16px;font-size:14px;color:var(--navy);font-family:var(--font-body);transition:.2s;appearance:none;}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--terracotta);}
+  .form-field textarea{resize:none;}
+
+  #hero .hero-content{width:100%;max-width:900px;gap:20px !important;}
+  #hero .hero-content p{max-width:760px;color:var(--copy-light) !important;}
+  #hero .nxt-wrap{padding-top:88px !important;padding-bottom:40px !important;}
+  #hero .hero-content > div:last-child{margin-top:8px !important;}
+  #hero > div:last-child{bottom:20px !important;}
+  #manifesto, #services, #work, #philosophy, #process, #studio, #contact{padding:var(--space-section) 0 !important;}
+  #services{padding-bottom:40px !important;}
+  #work{padding-top:40px !important;}
+  main > hr{margin:0 !important;}
+  #process{padding-bottom:40px !important;}
+  #studio{padding-top:40px !important;}
+  #cta{padding:var(--space-section) 0 !important;}
+  #services .services-header, #work .work-header, #process .process-header{margin-bottom:36px !important;}
+  #services .services-header, #work .work-header{gap:24px !important;}
+  #services .services-header .tag-label, #work .work-header .tag-label, #process .process-header .tag-label{color:var(--terracotta) !important;}
+  #services .services-header > p, #work .work-header > p, #process .process-header > p{font-family:var(--font-body);font-size:14px;line-height:1.6;color:var(--muted-light) !important;}
+  #services .service-card.light p, #services .service-card.sand p{color:var(--muted-light) !important;}
+  #services .service-card.dark p, #services .service-card.orange p{color:var(--muted-dark) !important;}
+  #work .work-card:not(.dark) p{color:var(--muted-light) !important;}
+  #work .work-card.dark p{color:var(--muted-dark) !important;}
+  #manifesto .manifesto-kicker{margin-bottom:24px !important;}
+  #manifesto .display-lg{font-size:clamp(30px,4.2vw,56px);}
+  #manifesto .manifesto-grid{max-width:none;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(32px,6vw,88px);align-items:end;}
+  #manifesto .manifesto-headline{max-width:760px;}
+  #manifesto .manifesto-headline h2{margin-bottom:4px !important;}
+  #manifesto .manifesto-divider{margin:28px 0 !important;}
+  #manifesto .manifesto-aside{border-left:1px solid rgba(255,255,255,.14);padding-left:28px;}
+  #manifesto .manifesto-copy{max-width:none !important;margin:0 0 24px !important;}
+  #manifesto p{color:var(--copy-dark) !important;}
+  #manifesto .tag-label{color:var(--terracotta) !important;}
+  #manifesto .manifesto-map{gap:12px !important;}
+  #manifesto .manifesto-map > div{gap:12px !important;}
+  #manifesto .manifesto-map > div span:first-child{width:82px !important;}
+  #philosophy .philosophy-grid{gap:48px !important;}
+  #philosophy p{color:var(--muted-dark) !important;}
+  #philosophy .tag-label{color:var(--terracotta) !important;}
+  #work .display-md{font-size:clamp(26px,3.2vw,40px);}
+  #philosophy .display-lg{font-size:clamp(30px,4.2vw,56px);}
+  #philosophy .philosophy-grid > div:first-child > div{margin-top:40px !important;}
+  #philosophy .philosophy-grid > div:last-child > div{padding:22px 0 !important;}
+  #process .process-header{margin-bottom:52px !important;}
+  #process .process-step p{color:var(--muted-light) !important;}
+  #process .process-dot{margin-bottom:16px;}
+  #process .tech-strip{margin-top:52px !important;padding-top:24px !important;}
+  #studio .studio-grid{gap:48px !important;}
+  #studio .studio-grid > div:first-child p{color:var(--muted-light) !important;}
+  #studio .studio-grid > div:last-child > div:first-child p{color:var(--muted-dark) !important;}
+  #studio .studio-grid > div:last-child{gap:16px !important;}
+  #studio .studio-grid > div:last-child > div{padding:24px !important;border-radius:var(--radius-card) !important;}
+  #cta .nxt-wrap > div{max-width:760px !important;}
+  #cta h2{margin-bottom:8px !important;}
+  #cta h2:nth-of-type(3){margin-bottom:24px !important;}
+  #cta p{margin-bottom:24px !important;color:var(--muted-dark) !important;}
+  #contact .contact-grid{gap:48px !important;}
+  #contact .contact-grid > div:first-child > p{color:var(--muted-light) !important;}
+  footer p{color:var(--muted-dark) !important;}
+  #contact .contact-grid > div:first-child .reveal[style*="margin-top"]{margin-top:36px !important;}
+  footer{padding:48px 0 56px !important;}
+  footer .footer-grid{gap:32px !important;padding-bottom:32px !important;}
+  footer .footer-bottom{padding-top:24px !important;}
+  footer .footer-grid > div:last-child > .btn-primary{align-self:flex-start;}
+  @media (min-width:768px){
+    #services .services-header, #work .work-header, #process .process-header{flex-direction:row !important;align-items:flex-end;justify-content:space-between;}
+  }
+  @media (max-width:767px){
+    #manifesto .manifesto-grid{grid-template-columns:1fr;gap:32px;}
+    #manifesto .manifesto-aside{border-left:0;border-top:1px solid rgba(255,255,255,.14);padding:24px 0 0;}
+    #manifesto .manifesto-map > div span:first-child{width:72px !important;}
+    .service-card{min-height:190px;padding:20px;}
+    .service-icon{width:32px;height:32px;}
+    .work-card{padding:20px;}
+  }
+
+  .text-terracotta{color:var(--terracotta);} .text-navy{color:var(--navy);} .text-white{color:#fff;}
+
+  @media (min-width:768px){
+    .services-header{flex-direction:row;align-items:flex-end;justify-content:space-between;}
+    .work-header{flex-direction:row;align-items:flex-end;justify-content:space-between;}
+    .process-header{flex-direction:row;align-items:flex-end;justify-content:space-between;}
+    .process-desktop{display:block !important;}
+    .process-mobile{display:none !important;}
+    .tech-strip{flex-direction:row;align-items:center;}
+    .form-row{grid-template-columns:1fr 1fr !important;}
+    .footer-bottom{flex-direction:row;align-items:center;justify-content:space-between;}
+    .work-list{grid-template-columns:1fr 1fr !important;}
+  }
+  @media (min-width:1024px){
+    .philosophy-grid{grid-template-columns:1fr 1fr !important;}
+    .studio-grid{grid-template-columns:1fr 1fr !important;}
+    .contact-grid{grid-template-columns:1fr 1.6fr !important;}
+    .footer-grid{grid-template-columns:1fr 1fr auto !important;}
+  }
+
+</style>
+</head>
+<body>
+<!-- Curseur personnalisé : à coller une seule fois juste après la balise <body>, avant le header -->
+<div class="custom-cursor" id="cursor"></div>
+
+<header id="header">
+  <div class="nav-inner">
+    <button class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">NEXTERRA</button>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <button class="tag-label" onclick="scrollToId('work')">Réalisations</button>
+      <button class="tag-label" onclick="scrollToId('services')">Services</button>
+      <button class="tag-label" onclick="scrollToId('studio')">Studio</button>
+      <button class="tag-label" onclick="scrollToId('process')">Processus</button>
+      <button class="tag-label" onclick="scrollToId('contact')">Contact</button>
+    </nav>
+    <div class="nav-cta"><button class="btn-primary" onclick="scrollToId('contact')">Démarrer un projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav aria-label="Navigation mobile">
+    <button onclick="scrollToId('work')">Réalisations</button>
+    <button onclick="scrollToId('services')">Services</button>
+    <button onclick="scrollToId('studio')">Studio</button>
+    <button onclick="scrollToId('process')">Processus</button>
+    <button onclick="scrollToId('contact')">Contact</button>
+  </nav>
+  <div class="mt-auto"><button class="btn-primary" style="width:100%;justify-content:center" onclick="scrollToId('contact')">Démarrer un projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+</div>
+
+
+<main>
+
+<!-- HERO -->
+<section id="hero" style="position:relative;min-height:100vh;background:var(--ivory);display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+  <div class="nxt-wrap" style="width:100%;padding-top:112px;padding-bottom:64px;">
+    <div class="hero-content" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--terracotta);"></span>
+        <span class="tag-label" style="color:rgba(17,24,39,.5);">Dakar · Sénégal — Studio Digital</span>
+      </div>
+      <div>
+        <h1 class="display-xl"><span class="text-navy">WE BUILD WHAT </span></h1>
+        <h1 class="display-xl"><span>COMES </span> <span class="text-terracotta">NEXT</span><span class="text-navy">.</span></h1>
+      </div>
+      <p style="font-family:var(--font-display);font-size:clamp(15px,1.6vw,17px);font-weight:500;" class="text-navy">Des produits digitaux pour les entreprises ambitieuses.</p>
+      <p style="font-size:16px;color:rgba(0,0,0);line-height:1.6;">NEXTERRA conçoit et développe des sites web, applications métier et expériences digitales sur mesure, des idées concrètes à impact réel.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:8px;">
+        <button class="btn-primary" onclick="scrollToId('contact')">Démarrer un projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        <button class="btn-ghost" onclick="scrollToId('work')">Voir nos réalisations</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:24px;margin-top:16px;">
+        <span class="tag-label" style="color:rgba(17,24,39,.3);">WEB</span>
+        <span class="tag-label" style="color:rgba(17,24,39,.3);">PRODUITS</span>
+        <span class="tag-label" style="color:rgba(17,24,39,.3);">LOGICIELS</span>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.4;">
+    <span class="tag-label text-navy">Défiler</span>
+    <div style="width:1px;height:32px;background:rgba(17,24,39,.3);"></div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto" class="reveal-section" style="background:var(--navy);padding:112px 0;overflow:hidden;">
+  <div class="nxt-wrap">
+    <div class="reveal manifesto-kicker"><span class="tag-label text-terracotta">Manifeste</span></div>
+    <div class="manifesto-grid">
+      <div class="manifesto-headline">
+        <h2 class="display-lg text-white reveal" style="margin-bottom:8px;">VOTRE ENTREPRISE</h2>
+        <h2 class="display-lg reveal delay-100" style="margin-bottom:24px;"><span class="text-white">A UN </span><span class="text-terracotta">PROBLÈME.</span></h2>
+        <div class="reveal delay-200 manifesto-divider" style="display:flex;align-items:center;gap:16px;margin:40px 0;">
+        <div style="width:48px;height:1px;background:var(--terracotta);"></div>
+        <span class="tag-label" style="color:rgba(255,255,255,.2);">Nous écoutons. Nous analysons. Nous agissons.</span>
+        </div>
+        <h2 class="display-lg text-white reveal delay-200">NOUS CONSTRUISONS</h2>
+        <h2 class="display-lg reveal delay-300"><span class="text-white">LA </span><span class="text-terracotta">SOLUTION</span>.</h2>
+      </div>
+      <div class="manifesto-aside reveal delay-300">
+        <p class="manifesto-copy" style="font-size:16px;color:rgba(255,255,255,.55);line-height:1.6;max-width:24rem;">Nous transformons les besoins métier, les idées et les processus complexes en expériences digitales simples, performantes et évolutives.</p>
+        <div class="manifesto-map" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:16px;"><span style="color:rgba(255,255,255,.3);font-size:14px;font-family:monospace;width:96px;">Idées</span><span class="text-terracotta" style="font-size:14px;font-family:var(--font-display);"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Expériences</span></div>
+          <div style="display:flex;align-items:center;gap:16px;"><span style="color:rgba(255,255,255,.3);font-size:14px;font-family:monospace;width:96px;">Problèmes</span><span class="text-terracotta" style="font-size:14px;font-family:var(--font-display);"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Solutions</span></div>
+          <div style="display:flex;align-items:center;gap:16px;"><span style="color:rgba(255,255,255,.3);font-size:14px;font-family:monospace;width:96px;">Processus</span><span class="text-terracotta" style="font-size:14px;font-family:var(--font-display);"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Outils</span></div>
+          <div style="display:flex;align-items:center;gap:16px;"><span style="color:rgba(255,255,255,.3);font-size:14px;font-family:monospace;width:96px;">Besoins</span><span class="text-terracotta" style="font-size:14px;font-family:var(--font-display);"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Produits</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="reveal-section" style="background:var(--ivory);padding:112px 0;">
+  <div class="nxt-wrap">
+    <div style="display:flex;flex-direction:column;gap:32px;margin-bottom:64px;" class="services-header">
+      <div class="reveal">
+        <span class="tag-label text-terracotta" style="display:block;margin-bottom:16px;">Services</span>
+        <h2 class="display-md text-navy">CE QUE NOUS CONSTRUISONS.</h2>
+      </div>
+      <p class="reveal delay-200" style="color:rgba(17,24,39,.5);max-width:20rem;font-size:14px;line-height:1.6;">Des solutions digitales conçues autour de vos objectifs.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card light reveal delay-100" data-cursor>
+        <div class="service-top"><div class="service-heading text-terracotta"><span class="service-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></span><span class="tag-label">01 — Présence digitale</span></div><div class="service-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div>
+        <h3 class="text-navy">SITES VITRINES</h3>
+        <p style="color:rgba(17,24,39,.5);">Des sites web crédibles, modernes et performants pour présenter votre activité.</p>
+      </div>
+
+      <div class="service-card orange reveal delay-200" data-cursor>
+        <div class="service-top"><div class="service-heading" style="color:rgba(255,255,255,.7);"><span class="service-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span><span class="tag-label">02 — Vente en ligne</span></div><div class="service-arrow light"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div>
+        <h3 class="text-white">E-COMMERCE</h3>
+        <p style="color:rgba(255,255,255,.75);">Des parcours de vente pensés pour présenter vos produits et accompagner votre croissance.</p>
+      </div>
+
+      <div class="service-card dark reveal delay-300" data-cursor>
+        <div class="service-top"><div class="service-heading text-terracotta"><span class="service-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></span><span class="tag-label">03 — Applications métier</span></div><div class="service-arrow light"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div>
+        <h3 class="text-white">APPS MÉTIER</h3>
+        <p style="color:rgba(255,255,255,.55);">Des outils sur mesure pour digitaliser vos processus et simplifier votre quotidien.</p>
+      </div>
+
+      <div class="service-card sand reveal delay-400" data-cursor>
+        <div class="service-top"><div class="service-heading text-terracotta"><span class="service-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span><span class="tag-label">04 — De l'idée au lancement</span></div><div class="service-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div>
+        <h3 class="text-navy">PRODUITS DIGITAUX</h3>
+        <p style="color:rgba(17,24,39,.5);">Des produits numériques conçus autour d'un besoin réel, de l'idée au lancement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr style="border:none;border-top:1px solid rgba(17,24,39,.08);margin-bottom:64px;">
+<!-- WORK (simplifié : titre, description, technos, liens — sans maquettes) -->
+<section id="work" class="reveal-section" style="background:var(--ivory);padding:100px 0 0 0;">
+  <div class="nxt-wrap">
+    <div style="display:flex;flex-direction:column;gap:24px;margin-bottom:64px;" class="work-header">
+      <div class="reveal">
+        <span class="tag-label text-terracotta" style="display:block;margin-bottom:16px;">Réalisations sélectionnées</span>
+        <h2 class="display-md text-navy">RÉALISATIONS.</h2>
+      </div>
+      <p class="reveal delay-200" style="color:rgba(17,24,39,.5);font-size:14px;max-width:20rem;line-height:1.6;">Des solutions conçues pour résoudre de vrais problèmes.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:1fr;gap:20px;" class="work-list">
+
+      <!-- Brasil Burger -->
+      <div class="work-card dark reveal" data-cursor>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span class="tag-label text-terracotta">01</span>
+          <span style="width:32px;height:1px;background:rgba(217,93,57,.4);"></span>
+          <span class="tag-label" style="color:rgba(255,255,255,.3);">Restauration en ligne</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,30px);font-weight:700;color:#fff;margin-bottom:8px;font-family:var(--font-display);">BRASIL BURGER</h3>
+        <p class="tag-label" style="color:rgba(255,255,255,.4);margin-bottom:16px;">Site de commande en ligne pour restaurant</p>
+        <p style="color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:36rem;">Une plateforme web permettant à un restaurant de présenter son menu et de gérer les commandes en ligne, du choix des produits jusqu'à la validation de la commande.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
+          <span style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:4px 10px;">PHP</span>
+          <span style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:4px 10px;">ASP.NET</span>
+          <span style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:4px 10px;">POSTGRESQL</span>
+        </div>
+        <div class="work-links">
+          <a class="btn-link" href="https://brasil-burger.onrender.com" target="_blank" rel="noopener">Voir le site <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn-link ghost-dark" href="https://github.com/mouhamet07/brasil_burger_L3" target="_blank" rel="noopener">Code sur GitHub <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- ImmoSN -->
+      <div class="work-card reveal delay-100" data-cursor>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span class="tag-label text-terracotta">02</span>
+          <span style="width:32px;height:1px;background:rgba(217,93,57,.4);"></span>
+          <span class="tag-label" style="color:rgba(17,24,39,.3);">Immobilier</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">IMMOSN</h3>
+        <p class="tag-label" style="color:rgba(17,24,39,.4);margin-bottom:16px;">Plateforme immobilière</p>
+        <p style="color:rgba(17,24,39,.5);font-size:14px;line-height:1.6;max-width:36rem;">Une plateforme digitale permettant aux agences immobilières de gérer leurs annonces, clients, visites et activités.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
+          <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);border:1px solid rgba(17,24,39,.1);border-radius:4px;padding:4px 10px;">Spring Boot</span>
+          <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);border:1px solid rgba(17,24,39,.1);border-radius:4px;padding:4px 10px;">Vue.js</span>
+          <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);border:1px solid rgba(17,24,39,.1);border-radius:4px;padding:4px 10px;">PostgreSQL</span>
+        </div>
+        <div class="work-links">
+          <a class="btn-link" href="https://github.com/mouhamet07/immosn" target="_blank" rel="noopener">Code sur GitHub <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Edu.CRM -->
+      <div class="work-card reveal delay-200" data-cursor>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span class="tag-label" style="color:var(--cobalt);">03</span>
+          <span style="width:32px;height:1px;background:rgba(79,109,255,.4);"></span>
+          <span class="tag-label" style="color:rgba(17,24,39,.3);">Éducation</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">EDU.CRM</h3>
+        <p class="tag-label" style="color:rgba(17,24,39,.4);margin-bottom:16px;">CRM pour établissements éducatifs</p>
+        <p style="color:rgba(17,24,39,.5);font-size:14px;line-height:1.6;max-width:36rem;">Un outil de gestion de la relation client pensé pour les établissements éducatifs, pour centraliser le suivi des élèves, des inscriptions et des échanges.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
+          <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);border:1px solid rgba(17,24,39,.1);border-radius:4px;padding:4px 10px;">Flask</span>
+          <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);border:1px solid rgba(17,24,39,.1);border-radius:4px;padding:4px 10px;">MySQL</span>
+        </div>
+        <div class="work-links">
+          <a class="btn-link" href="https://github.com/mouhamet07/edu.crm" target="_blank" rel="noopener">Code sur GitHub <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Portfolio -->
+      <div class="work-card dark reveal delay-300" data-cursor>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span class="tag-label text-terracotta">04</span>
+          <span style="width:32px;height:1px;background:rgba(217,93,57,.4);"></span>
+          <span class="tag-label" style="color:rgba(255,255,255,.3);">Portfolio</span>
+        </div>
+        <h3 style="font-size:clamp(22px,3vw,30px);font-weight:700;color:#fff;margin-bottom:8px;font-family:var(--font-display);">PORTFOLIO</h3>
+        <p class="tag-label" style="color:rgba(255,255,255,.4);margin-bottom:16px;">Site personnel</p>
+        <p style="color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:36rem;">Un site personnel présentant le parcours, les compétences et les projets réalisés.</p>
+        <div class="work-links">
+          <a class="btn-link" href="https://live-mouhamet-portfolio.pantheonsite.io" target="_blank" rel="noopener">Voir le site <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy" class="reveal-section" style="background:var(--navy);padding:112px 0;overflow:hidden;">
+  <div class="nxt-wrap">
+    <div style="display:grid;grid-template-columns:1fr;gap:80px;align-items:start;" class="philosophy-grid">
+      <div>
+        <span class="tag-label text-terracotta reveal" style="display:block;margin-bottom:32px;">Philosophie</span>
+        <h2 class="display-lg text-white reveal delay-100" style="margin-bottom:8px;">NOUS NE FAISONS</h2>
+        <h2 class="display-lg text-white reveal delay-100" style="margin-bottom:8px;">PAS QUE CONSTRUIRE.</h2>
+        <h2 class="display-lg reveal delay-200"><span class="text-terracotta">NOUS </span><span class="text-white">RÉSOLVONS.</span></h2>
+        <div class="reveal delay-300" style="margin-top:64px;"><div style="font-size:90px;font-weight:700;line-height:1;color:rgba(255,255,255,.05);user-select:none;font-family:var(--font-display);">NXT</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;padding-top:16px;">
+        <div class="reveal delay-100" style="display:flex;gap:24px;padding:32px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+          <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#D95D39" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="14" cy="14" r="4" fill="#D95D39" opacity=".3"/><circle cx="14" cy="14" r="2" fill="#D95D39"/></svg></div>
+          <div><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span class="tag-label text-terracotta">01</span><h3 style="font-size:16px;font-weight:700;color:#fff;font-family:var(--font-display);">COMPRENDRE</h3></div><p style="color:rgba(255,255,255,.4);font-size:14px;line-height:1.6;">Comprendre le problème avant de choisir la technologie.</p></div>
+        </div>
+        <div class="reveal delay-200" style="display:flex;gap:24px;padding:32px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+          <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="14" rx="2" stroke="#D95D39" stroke-width="1.5"/><path d="M9 24h10M14 18v6" stroke="#D95D39" stroke-width="1.5" stroke-linecap="round"/><path d="M9 10h10M9 13h6" stroke="#D95D39" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span class="tag-label text-terracotta">02</span><h3 style="font-size:16px;font-weight:700;color:#fff;font-family:var(--font-display);">CONCEVOIR</h3></div><p style="color:rgba(255,255,255,.4);font-size:14px;line-height:1.6;">Imaginer une expérience simple et intuitive.</p></div>
+        </div>
+        <div class="reveal delay-300" style="display:flex;gap:24px;padding:32px 0;">
+          <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 20l6-12 4 8 3-4 3 8" stroke="#D95D39" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="8" r="2.5" fill="#D95D39" opacity=".4"/><circle cx="22" cy="8" r="1" fill="#D95D39"/></svg></div>
+          <div><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span class="tag-label text-terracotta">03</span><h3 style="font-size:16px;font-weight:700;color:#fff;font-family:var(--font-display);">CONSTRUIRE</h3></div><p style="color:rgba(255,255,255,.4);font-size:14px;line-height:1.6;">Construire une solution fiable et évolutive.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="reveal-section" style="background:var(--ivory);padding:112px 0;overflow:hidden;">
+  <div class="nxt-wrap">
+    <div style="display:flex;flex-direction:column;gap:24px;margin-bottom:80px;" class="process-header">
+      <div class="reveal">
+        <span class="tag-label text-terracotta" style="display:block;margin-bottom:16px;">Processus</span>
+        <h2 class="display-md text-navy">DE L'IDÉE<br>À L'IMPACT.</h2>
+      </div>
+      <p class="reveal delay-200" style="color:rgba(17,24,39,.5);font-size:14px;max-width:20rem;line-height:1.6;">Une méthode claire, du brief jusqu'au lancement et au-delà.</p>
+    </div>
+
+    <div class="process-desktop">
+      <div class="process-track">
+        <div class="process-track-bg"></div>
+        <div class="process-track-fill process-line-fill"></div>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal"><div class="process-dot"></div><span class="tag-label text-terracotta" style="display:block;margin-bottom:12px;">01</span><h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;font-family:var(--font-display);">DÉCOUVRIR</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Comprendre le besoin, l'activité et les objectifs.</p></div>
+        <div class="process-step reveal delay-100"><div class="process-dot"></div><span class="tag-label text-terracotta" style="display:block;margin-bottom:12px;">02</span><h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;font-family:var(--font-display);">FAÇONNER</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Définir la structure, l'expérience et les fonctionnalités.</p></div>
+        <div class="process-step reveal delay-200"><div class="process-dot"></div><span class="tag-label text-terracotta" style="display:block;margin-bottom:12px;">03</span><h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;font-family:var(--font-display);">CONSTRUIRE</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Développer et intégrer la solution.</p></div>
+        <div class="process-step reveal delay-300"><div class="process-dot"></div><span class="tag-label text-terracotta" style="display:block;margin-bottom:12px;">04</span><h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;font-family:var(--font-display);">LANCER</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Tester, optimiser et mettre en ligne.</p></div>
+        <div class="process-step reveal delay-400"><div class="process-dot"></div><span class="tag-label text-terracotta" style="display:block;margin-bottom:12px;">05</span><h3 style="font-size:17px;font-weight:700;color:var(--navy);margin-bottom:12px;font-family:var(--font-display);">ÉVOLUER</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Faire évoluer la solution avec l'activité.</p></div>
+      </div>
+    </div>
+
+    <div class="process-mobile" style="display:flex;flex-direction:column;">
+      <div style="position:relative;display:flex;gap:24px;padding-bottom:40px;"><div style="position:absolute;left:16px;top:16px;bottom:0;width:1px;background:rgba(17,24,39,.1);"></div><div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;border:2px solid var(--terracotta);background:var(--ivory);z-index:10;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;border-radius:50%;background:var(--terracotta);"></div></div><div style="padding-top:4px;"><span class="tag-label text-terracotta" style="display:block;margin-bottom:4px;">01</span><h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">DÉCOUVRIR</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Comprendre le besoin, l'activité et les objectifs.</p></div></div>
+      <div style="position:relative;display:flex;gap:24px;padding-bottom:40px;"><div style="position:absolute;left:16px;top:16px;bottom:0;width:1px;background:rgba(17,24,39,.1);"></div><div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;border:2px solid var(--terracotta);background:var(--ivory);z-index:10;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;border-radius:50%;background:var(--terracotta);"></div></div><div style="padding-top:4px;"><span class="tag-label text-terracotta" style="display:block;margin-bottom:4px;">02</span><h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">FAÇONNER</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Définir la structure, l'expérience et les fonctionnalités.</p></div></div>
+      <div style="position:relative;display:flex;gap:24px;padding-bottom:40px;"><div style="position:absolute;left:16px;top:16px;bottom:0;width:1px;background:rgba(17,24,39,.1);"></div><div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;border:2px solid var(--terracotta);background:var(--ivory);z-index:10;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;border-radius:50%;background:var(--terracotta);"></div></div><div style="padding-top:4px;"><span class="tag-label text-terracotta" style="display:block;margin-bottom:4px;">03</span><h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">CONSTRUIRE</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Développer et intégrer la solution.</p></div></div>
+      <div style="position:relative;display:flex;gap:24px;padding-bottom:40px;"><div style="position:absolute;left:16px;top:16px;bottom:0;width:1px;background:rgba(17,24,39,.1);"></div><div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;border:2px solid var(--terracotta);background:var(--ivory);z-index:10;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;border-radius:50%;background:var(--terracotta);"></div></div><div style="padding-top:4px;"><span class="tag-label text-terracotta" style="display:block;margin-bottom:4px;">04</span><h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">LANCER</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Tester, optimiser et mettre en ligne.</p></div></div>
+      <div style="position:relative;display:flex;gap:24px;"><div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;border:2px solid var(--terracotta);background:var(--ivory);z-index:10;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;border-radius:50%;background:var(--terracotta);"></div></div><div style="padding-top:4px;"><span class="tag-label text-terracotta" style="display:block;margin-bottom:4px;">05</span><h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:var(--font-display);">ÉVOLUER</h3><p style="font-size:14px;color:rgba(17,24,39,.5);line-height:1.6;">Faire évoluer la solution avec l'activité.</p></div></div>
+    </div>
+
+    <div class="reveal delay-400 tech-strip" style="margin-top:80px;padding-top:32px;border-top:1px solid rgba(17,24,39,.1);display:flex;flex-direction:column;gap:16px;">
+      <span style="font-size:11px;color:rgba(17,24,39,.3);font-family:monospace;">Propulsé par des technologies modernes</span>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);">React</span>
+        <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);">Laravel</span>
+        <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);">Spring Boot</span>
+        <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);">PHP</span>
+        <span style="font-size:11px;font-family:monospace;color:rgba(17,24,39,.4);">PostgreSQL / MySQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section id="studio" class="reveal-section" style="background:var(--ivory);padding:112px 0;">
+  <div class="nxt-wrap">
+    <div style="display:grid;grid-template-columns:1fr;gap:64px;align-items:center;" class="studio-grid">
+      <div>
+        <span class="tag-label text-terracotta reveal" style="display:block;margin-bottom:32px;">Studio</span>
+        <h2 class="display-md text-navy reveal delay-100" style="margin-bottom:24px;">CONSTRUIT AVEC<br><span class="text-terracotta">CURIOSITÉ.</span></h2>
+        <p class="reveal delay-200" style="color:rgba(17,24,39,.5);line-height:1.6;margin-bottom:32px;max-width:28rem;">NEXTERRA est né d'une passion pour le développement logiciel et d'une volonté de créer des solutions digitales utiles aux entreprises. Basé à Dakar, nous construisons pour l'Afrique et au-delà.</p>
+        <div class="reveal delay-300" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;">
+          <span style="padding:6px 12px;border:1px solid rgba(17,24,39,.15);border-radius:999px;font-size:11px;color:rgba(17,24,39,.5);font-family:var(--font-display);font-weight:600;">Curiosité</span>
+          <span style="padding:6px 12px;border:1px solid rgba(17,24,39,.15);border-radius:999px;font-size:11px;color:rgba(17,24,39,.5);font-family:var(--font-display);font-weight:600;">Rigueur</span>
+          <span style="padding:6px 12px;border:1px solid rgba(17,24,39,.15);border-radius:999px;font-size:11px;color:rgba(17,24,39,.5);font-family:var(--font-display);font-weight:600;">Impact</span>
+          <span style="padding:6px 12px;border:1px solid rgba(17,24,39,.15);border-radius:999px;font-size:11px;color:rgba(17,24,39,.5);font-family:var(--font-display);font-weight:600;">Évolution</span>
+          <span style="padding:6px 12px;border:1px solid rgba(17,24,39,.15);border-radius:999px;font-size:11px;color:rgba(17,24,39,.5);font-family:var(--font-display);font-weight:600;">Proximité</span>
+        </div>
+        <button class="btn-ghost reveal delay-400" onclick="scrollToId('contact')">Découvrir le studio <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="reveal delay-200" style="display:flex;flex-direction:column;gap:24px;">
+        <div style="background:var(--navy);border-radius:16px;padding:32px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;right:0;width:192px;height:192px;border-radius:50%;border:1px solid rgba(217,93,57,.1);transform:translate(33%,-33%);"></div>
+          <div style="position:relative;z-index:10;">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+              <div style="width:48px;height:48px;border-radius:50%;background:rgba(217,93,57,.2);border:2px solid rgba(217,93,57,.3);display:flex;align-items:center;justify-content:center;"><span style="font-size:16px;font-weight:700;color:var(--terracotta);font-family:var(--font-display);">MT</span></div>
+              <div><p style="font-size:14px;font-weight:700;color:#fff;font-family:var(--font-display);">Mouhamet Thiam</p><p style="font-size:12px;color:rgba(255,255,255,.4);font-family:monospace;">Fondateur & Développeur</p></div>
+            </div>
+            <p style="color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;margin-bottom:24px;">« Construire des solutions qui font vraiment la différence pour les entreprises, c'est ce qui m'a amené à créer NEXTERRA. »</p>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--terracotta);"></span><span style="color:rgba(255,255,255,.3);font-size:12px;font-family:monospace;">Dakar · Sénégal</span></div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:16px;padding:32px;">
+          <h3 style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:24px;font-family:var(--font-display);">LA TECHNOLOGIE DOIT SIMPLIFIER LES CHOSES.</h3>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:4px;height:4px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:8px;"></div><div><span class="tag-label text-navy" style="display:block;margin-bottom:4px;">CLARTÉ</span><span style="font-size:14px;color:rgba(17,24,39,.5);">Comprendre avant de construire.</span></div></div>
+            <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:4px;height:4px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:8px;"></div><div><span class="tag-label text-navy" style="display:block;margin-bottom:4px;">OBJECTIF</span><span style="font-size:14px;color:rgba(17,24,39,.5);">Chaque fonctionnalité répond à un besoin.</span></div></div>
+            <div style="display:flex;gap:16px;align-items:flex-start;"><div style="width:4px;height:4px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:8px;"></div><div><span class="tag-label text-navy" style="display:block;margin-bottom:4px;">LONG TERME</span><span style="font-size:14px;color:rgba(17,24,39,.5);">Créer des solutions capables d'évoluer.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORANGE CTA -->
+<section id="cta" class="reveal-section" style="position:relative;overflow:hidden;padding:112px 0;background:#D95D39;">
+  <div style="position:absolute;right:-128px;top:-128px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(255,255,255,.1);animation:orbit-cw 30s linear infinite;transform-origin:center;"></div>
+  <div style="position:absolute;right:-64px;top:-64px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(255,255,255,.15);"></div>
+  <div style="position:absolute;left:-80px;bottom:-80px;width:280px;height:280px;border-radius:50%;border:1px solid rgba(255,255,255,.1);"></div>
+  <div class="nxt-wrap" style="position:relative;z-index:10;">
+    <div style="max-width:48rem;">
+      <h2 class="display-xl text-white reveal" style="margin-bottom:16px;">VOTRE PROCHAIN</h2>
+      <h2 class="display-xl reveal delay-100" style="color:rgba(255,255,255,.8);margin-bottom:16px;">PROJET DIGITAL</h2>
+      <h2 class="display-xl text-white reveal delay-200" style="margin-bottom:40px;">COMMENCE ICI.</h2>
+      <p class="reveal delay-300" style="color:rgba(255,255,255,.7);font-size:18px;margin-bottom:40px;max-width:28rem;">Parlons de ce que vous voulez construire.</p>
+      <div class="reveal delay-400" style="display:flex;flex-wrap:wrap;gap:16px;">
+        <button onclick="scrollToId('contact')" style="display:inline-flex;align-items:center;gap:8px;padding:16px 28px;background:#fff;color:var(--terracotta);font-weight:700;border-radius:6px;border:none;cursor:pointer;font-family:var(--font-display);font-size:14px;letter-spacing:.02em;">Démarrer un projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        <button class="btn-ghost-light" onclick="scrollToId('work')">Voir nos réalisations</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal-section" style="background:var(--ivory);padding:112px 0;">
+  <div class="nxt-wrap">
+    <div style="display:grid;grid-template-columns:1fr;gap:64px;" class="contact-grid">
+      <div>
+        <span class="tag-label text-terracotta reveal" style="display:block;margin-bottom:32px;">Contact</span>
+        <h2 class="display-md text-navy reveal delay-100" style="margin-bottom:24px;">CONSTRUISONS<br>QUELQUE CHOSE.</h2>
+        <p class="reveal delay-200" style="color:rgba(17,24,39,.5);line-height:1.6;margin-bottom:40px;max-width:20rem;">Vous avez une idée, un projet ou un problème à résoudre ? Parlons-en.</p>
+        <div class="reveal delay-300" style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:rgba(17,24,39,.05);display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.5 1.5 2.5 3.5 2.5 6c0 3.5 4.5 6.5 4.5 6.5S11.5 9.5 11.5 6C11.5 3.5 9.5 1.5 7 1.5z" stroke="#111827" stroke-width="1.2"/><circle cx="7" cy="6" r="1.5" fill="#D95D39"/></svg></div>
+            <div><p style="font-size:12px;font-family:monospace;color:rgba(17,24,39,.4);">Localisation</p><p style="font-size:14px;color:var(--navy);font-family:var(--font-display);font-weight:600;">Dakar · Sénégal</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:rgba(17,24,39,.05);display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#111827" stroke-width="1.2"/><path d="M4 7C4 5.3 5.3 4 7 4s3 1.3 3 3-1.3 3-3 3" stroke="#D95D39" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            <div><p style="font-size:12px;font-family:monospace;color:rgba(17,24,39,.4);">Marché</p><p style="font-size:14px;color:var(--navy);font-family:var(--font-display);font-weight:600;">Construire pour l'Afrique & au-delà</p></div>
+          </div>
+        </div>
+        <div class="reveal delay-400" style="margin-top:64px;padding-left:16px;border-left:2px solid var(--terracotta);"><p style="font-size:14px;color:rgba(17,24,39,.4);font-style:italic;line-height:1.6;">« Nous transformons les idées en expériences digitales, les problèmes en solutions. »</p></div>
+      </div>
+      <div class="reveal delay-200" style="display:flex;align-items:center;">
+        <div style="max-width:32rem;">
+          <span class="tag-label text-terracotta" style="display:block;margin-bottom:16px;">Échange direct</span>
+          <h3 style="font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy);margin-bottom:12px;font-family:var(--font-display);">PARLONS DE VOTRE PROJET.</h3>
+          <p style="color:var(--muted-light);font-size:14px;line-height:1.6;margin-bottom:24px;">Écrivez-nous directement sur WhatsApp pour discuter de votre besoin et recevoir une première réponse rapidement.</p>
+          <a class="btn-primary" href="https://wa.me/221785270408?text=Bonjour%20NEXTERRA%2C%20je%20souhaite%20discuter%20d%27un%20projet%20digital." target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            Nous contacter sur WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+<footer style="background:var(--navy);padding:64px 0 80px;">
+  <div class="nxt-wrap">
+    <div style="display:grid;grid-template-columns:1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);" class="footer-grid">
+      <div>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="font-weight:700;font-size:24px;letter-spacing:-.04em;color:#fff;margin-bottom:12px;display:block;background:none;border:none;cursor:pointer;font-family:var(--font-display);">NEXTERRA</button>
+        <p style="color:rgba(255,255,255,.4);font-size:14px;margin-bottom:24px;">Construire ce qui vient ensuite.</p>
+        <div style="display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--terracotta);"></span><span style="color:rgba(255,255,255,.3);font-size:12px;font-family:monospace;">Dakar · Sénégal</span></div>
+      </div>
+      <nav aria-label="Navigation du pied de page" style="display:flex;flex-direction:column;gap:12px;">
+        <span class="tag-label" style="color:rgba(255,255,255,.2);margin-bottom:8px;">Navigation</span>
+        <button onclick="scrollToId('work')" style="font-size:14px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-display);font-weight:500;">Réalisations</button>
+        <button onclick="scrollToId('services')" style="font-size:14px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-display);font-weight:500;">Services</button>
+        <button onclick="scrollToId('studio')" style="font-size:14px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-display);font-weight:500;">Studio</button>
+        <button onclick="scrollToId('process')" style="font-size:14px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-display);font-weight:500;">Processus</button>
+        <button onclick="scrollToId('contact')" style="font-size:14px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-display);font-weight:500;">Contact</button>
+      </nav>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div>
+          <span class="tag-label" style="color:rgba(255,255,255,.2);display:block;margin-bottom:16px;">Réseaux</span>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <a href="https://github.com/mouhamet07" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.4);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span style="font-size:14px;font-family:var(--font-display);font-weight:500;">GitHub</span></a>
+            <a href="#" style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.4);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg><span style="font-size:14px;font-family:var(--font-display);font-weight:500;">LinkedIn</span></a>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="scrollToId('contact')" style="margin-top:8px;">Démarrer un projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div style="padding-top:32px;display:flex;flex-direction:column;gap:16px;" class="footer-bottom">
+      <span style="color:rgba(255,255,255,.2);font-size:12px;font-family:monospace;">© 2026 NEXTERRA — Tous droits réservés.</span>
+      <span style="color:rgba(255,255,255,.2);font-size:12px;font-family:monospace;">Talent digital africain au service d'un marché mondial.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function scrollToId(id){
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }
+
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, {passive:true});
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  const cursor = document.getElementById('cursor');
+  if (window.matchMedia('(min-width: 769px)').matches) {
+    cursor.style.opacity = '1';
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, [data-cursor]').forEach((el) => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+  }
+
+  const revealSections = document.querySelectorAll('.reveal-section');
+  revealSections.forEach((section) => section.querySelectorAll('.reveal').forEach((element) => element.classList.add('pre')));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.reveal, .process-line-fill').forEach((child) => child.classList.add('in'));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.08});
+  revealSections.forEach((section) => observer.observe(section));
+
+</script>
+</body>
+</html>
