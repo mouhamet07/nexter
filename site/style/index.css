@@ -3107,7 +3107,12 @@ html[data-motion="high"] .cover-overlay-section {
       }
 
       #services {
-        padding: 48px 0;
+        padding: 44px 0 24px;
+      }
+
+      html[data-motion="high"] .work-sticky-viewport {
+        align-items: flex-start;
+        padding: 20px 0 16px;
       }
 
       .services-header,
