@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="fr" data-motion="high">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Technique -->
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0F172A" />
+  <title>NEXTERRA — Studio digital à Dakar | Sites web, applications &amp; logiciels sur mesure</title>
+  <meta name="description"
+    content="NEXTERRA conçoit et développe des sites vitrines, boutiques e-commerce, applications métier et logiciels sur mesure pour les entreprises. Studio digital basé à Dakar, Sénégal." />
+  <link rel="canonical" href="https://nexterra.sn/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="NEXTERRA — Studio digital à Dakar | Sites web, applications &amp; logiciels" />
+  <meta property="og:description"
+    content="Nous transformons les besoins métier, les idées et les processus complexes en expériences digitales simples, performantes et évolutives." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexterra.sn/" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="NEXTERRA" />
+  <meta property="og:image" content="./assets/img/preview-link.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="NEXTERRA — Studio digital à Dakar" />
+  <meta name="twitter:image" content="./assets/img/preview-link.png" />
+  <link rel="image_src" href="./assets/img/preview-link.png" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NEXTERRA — Studio digital à Dakar" />
+  <meta name="twitter:description"
+    content="Sites web, applications métier et logiciels sur mesure pour votre entreprise." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons (Font Awesome 6.5.2 — Règle stricte : zéro emoji dans l'UI) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./css/index.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NEXTERRA",
+    "description": "Studio digital basé à Dakar spécialisé dans la conception et le développement de sites web, e-commerce, applications métier et logiciels sur mesure.",
+    "url": "https://nexterra.sn/",
+    "image": "./assets/img/preview-link.png",
+    "telephone": "+221785270408",
+    "email": "mouhamethiam7@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dakar",
+      "addressCountry": "SN"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Mouhamet Thiam",
+      "jobTitle": "Fondateur & Créateur digital",
+      "sameAs": [
+        "https://github.com/mouhamet07",
+        "https://www.linkedin.com/in/mouhamet-thiam/",
+        "https://www.instagram.com/mouhamet_7"
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Curseur personnalisé interactif -->
+  <div class="custom-cursor" id="cursor" aria-hidden="true">
+    <span class="cursor-dot"></span>
+  </div>
+
+  <!-- Barre de progression globale du scroll -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- HEADER / NAVBAR -->
+  <header id="header">
+    <div class="nav-inner">
+      <button class="logo" type="button" data-magnetic data-strength="0.22"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="NEXTERRA — Retour en haut">
+        <img src="./assets/img/logo-bgw-2.png" alt="NEXTERRA" width="142" height="32" />
+      </button>
+
+      <nav class="nav-links" aria-label="Navigation principale">
+        <button class="tag-label nav-btn" type="button" data-magnetic data-strength="0.25"
+          onclick="scrollToId('services')" data-i18n="nav.services">Services</button>
+        <button class="tag-label nav-btn" type="button" data-magnetic data-strength="0.25" onclick="scrollToId('work')"
+          data-i18n="nav.work">Réalisations</button>
+        <button class="tag-label nav-btn" type="button" data-magnetic data-strength="0.25"
+          onclick="scrollToId('process')" data-i18n="nav.process">Processus</button>
+        <button class="tag-label nav-btn" type="button" data-magnetic data-strength="0.25"
+          onclick="scrollToId('studio')" data-i18n="nav.studio">Studio</button>
+        <button class="tag-label nav-btn" type="button" data-magnetic data-strength="0.25"
+          onclick="scrollToId('contact')" data-i18n="nav.contact">Contact</button>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switcher" role="group" aria-label="Sélecteur de langue">
+          <button type="button" class="lang-btn" data-lang="fr" aria-current="page" data-magnetic
+            data-strength="0.2">FR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-current="false" data-magnetic
+            data-strength="0.2">EN</button>
+        </div>
+        <div class="nav-cta">
+          <button class="btn-primary" type="button" data-magnetic onclick="scrollToId('contact')">
+            <span class="btn-magnetic-inner">
+              <span data-i18n="nav.start">Démarrer un projet</span>
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false"
+          aria-controls="mobileMenu" data-magnetic data-strength="0.25">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU MOBILE -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav aria-label="Navigation mobile">
+      <button type="button" onclick="scrollToId('services')" data-i18n="nav.services">Services</button>
+      <button type="button" onclick="scrollToId('work')" data-i18n="nav.work">Réalisations</button>
+      <button type="button" onclick="scrollToId('process')" data-i18n="nav.process">Processus</button>
+      <button type="button" onclick="scrollToId('studio')" data-i18n="nav.studio">Studio</button>
+      <button type="button" onclick="scrollToId('contact')" data-i18n="nav.contact">Contact</button>
+    </nav>
+    <div class="mobile-menu-footer">
+      <button class="btn-primary" type="button" data-magnetic style="width:100%;justify-content:center"
+        onclick="scrollToId('contact')">
+        <span class="btn-magnetic-inner">
+          <span data-i18n="nav.start">Démarrer un projet</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===================================================================
+         PAIR 1 : HERO + MANIFESTE (AVEC TRANSITION « COUVRIR » CAPTURE 9)
+         =================================================================== -->
+    <div class="cover-transition-group" data-cover-group>
+      <!-- SECTION 1 : HERO -->
+      <section id="hero" class="cover-underlay-section" data-cover-underlay>
+        <div class="hero-ambient" aria-hidden="true">
+          <div class="hero-orb hero-orb-1"></div>
+          <div class="hero-orb hero-orb-2"></div>
+          <div class="hero-grid-pattern"></div>
+        </div>
+
+        <div class="nxt-wrap hero-layout">
+          <div class="hero-content">
+            <h1 class="display-xl hero-title" data-reveal data-i18n="hero.title" data-i18n-html="true">
+              <span class="hero-line"><span class="text-navy">WE BUILD WHAT</span></span>
+              <span class="hero-line"><span>COMES </span><span class="text-terracotta">NEXT</span><span
+                  class="text-navy">.</span></span>
+            </h1>
+
+            <p class="hero-lead text-navy" data-reveal data-i18n="hero.subtitle">
+              Sites web, applications et logiciels sur mesure pour votre entreprise.
+            </p>
+
+            <p class="hero-desc" data-reveal data-i18n="hero.description">
+              NEXTERRA conçoit et développe des sites web, applications métier et expériences digitales sur mesure, des
+              idées concrètes à impact réel.
+            </p>
+
+            <div class="hero-actions" data-reveal>
+              <button class="btn-primary" type="button" data-magnetic onclick="scrollToId('contact')">
+                <span class="btn-magnetic-inner">
+                  <span data-i18n="hero.start">Démarrer un projet</span>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+              </button>
+              <button class="btn-ghost" type="button" data-magnetic onclick="scrollToId('work')">
+                <span class="btn-magnetic-inner">
+                  <span data-i18n="hero.work">Voir nos réalisations</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="hero-tags" data-reveal data-i18n-list="hero.tags">
+              <span class="tag-pill" data-magnetic data-strength="0.35"><i class="fa-solid fa-code"
+                  aria-hidden="true"></i> <span data-i18n-item>WEB</span></span>
+              <span class="tag-pill" data-magnetic data-strength="0.35"><i class="fa-solid fa-cube"
+                  aria-hidden="true"></i> <span data-i18n-item>PRODUITS</span></span>
+              <span class="tag-pill" data-magnetic data-strength="0.35"><i class="fa-solid fa-microchip"
+                  aria-hidden="true"></i> <span data-i18n-item>LOGICIELS</span></span>
+            </div>
+          </div>
+
+          <!-- Petit aperçu 3D interactif dans le Hero -->
+          <div class="hero-visual" data-reveal aria-hidden="true">
+            <div class="hero-badge-card">
+              <div class="hero-badge-ring"></div>
+              <div class="hero-mini-n3d" id="heroMiniN3D">
+                <!-- Extrusion 3D générée en JS/CSS -->
+              </div>
+              <div class="hero-badge-meta">
+                <span class="tag-label text-terracotta">NEXTERRA STUDIO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="hero-scroll-cue" type="button" data-magnetic data-strength="0.3"
+          onclick="scrollToId('manifesto')" aria-label="Défiler vers le manifeste">
+          <span class="tag-label text-navy" data-i18n="hero.scroll">Défiler</span>
+          <span class="scroll-cue-line"><span class="scroll-cue-runner"></span></span>
+        </button>
+      </section>
+
+      <!-- SECTION 2 : MANIFESTO (TRANSITION COUVRIR POWERPOINT 100% + MOTION DESIGN VIVANT) -->
+      <section id="manifesto" class="cover-overlay-section reveal-section" data-cover-overlay>
+        <div class="cover-edge-highlight" aria-hidden="true"></div>
+        <div class="manifesto-ambient" aria-hidden="true">
+          <div class="manifesto-spotlight" id="manifestoSpotlight"></div>
+          <div class="manifesto-grid-bg"></div>
+          <div class="manifesto-ring manifesto-ring-1"></div>
+          <div class="manifesto-ring manifesto-ring-2"></div>
+        </div>
+
+        <div class="nxt-wrap manifesto-wrap">
+          <div class="manifesto-kicker" data-reveal>
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span class="tag-label text-terracotta" data-i18n="manifesto.label">Manifeste</span>
+          </div>
+
+          <div class="manifesto-grid">
+            <div class="manifesto-headline">
+              <h2 class="display-lg text-white" data-reveal data-i18n="manifesto.title" data-i18n-html="true">
+                VOTRE ENTREPRISE<br />A UN <span class="text-terracotta">PROBLÈME.</span>
+              </h2>
+
+              <div class="manifesto-divider" data-reveal>
+                <div class="manifesto-divider-line">
+                  <span class="manifesto-divider-beam"></span>
+                </div>
+                <span class="tag-label text-terracotta" data-i18n="manifesto.divider">NOUS ÉCOUTONS. NOUS ANALYSONS.
+                  NOUS AGISSONS.</span>
+              </div>
+
+              <h2 class="display-lg text-white" data-reveal data-i18n="manifesto.solution" data-i18n-html="true">
+                NOUS CONSTRUISONS<br />LA <span class="text-terracotta">SOLUTION.</span>
+              </h2>
+            </div>
+
+            <div class="manifesto-aside" data-reveal>
+              <p class="manifesto-copy" data-i18n="manifesto.copy">
+                Nous transformons les besoins métier, les idées et les processus complexes en expériences digitales
+                simples, performantes et évolutives.
+              </p>
+
+              <div class="manifesto-map" id="manifestoMap" data-stagger>
+                <div class="manifesto-row is-active" data-manifesto-idx="0" data-reveal tabindex="0">
+                  <span class="manifesto-from" data-i18n="manifesto.map.ideas">Idées</span>
+                  <span class="manifesto-to text-terracotta"><i class="fa-solid fa-arrow-right manifesto-arrow"
+                      aria-hidden="true"></i> <span data-i18n="manifesto.map.experiences">Expériences</span></span>
+                  <span class="manifesto-row-beam" aria-hidden="true"></span>
+                </div>
+                <div class="manifesto-row" data-manifesto-idx="1" data-reveal tabindex="0">
+                  <span class="manifesto-from" data-i18n="manifesto.map.problems">Problèmes</span>
+                  <span class="manifesto-to text-terracotta"><i class="fa-solid fa-arrow-right manifesto-arrow"
+                      aria-hidden="true"></i> <span data-i18n="manifesto.map.solutions">Solutions</span></span>
+                  <span class="manifesto-row-beam" aria-hidden="true"></span>
+                </div>
+                <div class="manifesto-row" data-manifesto-idx="2" data-reveal tabindex="0">
+                  <span class="manifesto-from" data-i18n="manifesto.map.processes">Processus</span>
+                  <span class="manifesto-to text-terracotta"><i class="fa-solid fa-arrow-right manifesto-arrow"
+                      aria-hidden="true"></i> <span data-i18n="manifesto.map.tools">Outils</span></span>
+                  <span class="manifesto-row-beam" aria-hidden="true"></span>
+                </div>
+                <div class="manifesto-row" data-manifesto-idx="3" data-reveal tabindex="0">
+                  <span class="manifesto-from" data-i18n="manifesto.map.needs">Besoins</span>
+                  <span class="manifesto-to text-terracotta"><i class="fa-solid fa-arrow-right manifesto-arrow"
+                      aria-hidden="true"></i> <span data-i18n="manifesto.map.products">Produits</span></span>
+                  <span class="manifesto-row-beam" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         SECTION 3 : SERVICES (CAPTURE 1 — ACCORDÉON INTERACTIF ANIMÉ)
+         =================================================================== -->
+    <section id="services" class="reveal-section">
+      <div class="nxt-wrap">
+        <div class="services-header">
+          <div data-reveal>
+            <span class="tag-label text-terracotta section-kicker" data-i18n="services.label">Services</span>
+            <h2 class="display-md text-navy" data-i18n="services.title">CE QUE NOUS CONSTRUISONS.</h2>
+          </div>
+        </div>
+
+        <div class="services-accordion-layout" data-reveal>
+          <!-- Liste Accordéon à gauche -->
+          <div class="services-accordion" id="servicesAccordion" role="tablist" aria-label="Nos services">
+            <!-- Service 01 -->
+            <article class="service-acc-item is-active" data-service-index="0" data-theme="light">
+              <button class="service-acc-trigger" type="button" role="tab" aria-expanded="true"
+                aria-controls="service-panel-0" id="service-tab-0">
+                <div class="service-acc-head">
+                  <span class="service-acc-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+                  <div class="service-acc-titles">
+                    <span class="tag-label service-acc-tag" data-i18n="services.websites.label">01 — Présence
+                      digitale</span>
+                    <h3 class="service-acc-title" data-i18n="services.websites.title">SITES VITRINES</h3>
+                  </div>
+                </div>
+                <span class="service-acc-arrow" data-magnetic data-strength="0.35">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </span>
+              </button>
+              <div class="service-acc-panel" id="service-panel-0" role="tabpanel" aria-labelledby="service-tab-0">
+                <div class="service-acc-panel-inner">
+                  <p class="service-acc-desc" data-i18n="services.websites.description">
+                    Des sites web crédibles, modernes et performants pour présenter votre activité, renforcer votre
+                    image de marque et convertir vos visiteurs en clients.
+                  </p>
+                  <div class="service-acc-chips" data-i18n-list="services.websites.chips">
+                    <span class="service-chip" data-i18n-item>Design sur mesure</span>
+                    <span class="service-chip" data-i18n-item>Motion Design 60fps</span>
+                    <span class="service-chip" data-i18n-item>SEO &amp; Performance</span>
+                    <span class="service-chip" data-i18n-item>Responsive Mobile-First</span>
+                  </div>
+                  <div class="service-acc-cta">
+                    <button class="btn-link" type="button" data-magnetic onclick="scrollToId('contact')">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="services.cta">Discuter de ce service</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Service 02 -->
+            <article class="service-acc-item" data-service-index="1" data-theme="orange">
+              <button class="service-acc-trigger" type="button" role="tab" aria-expanded="false"
+                aria-controls="service-panel-1" id="service-tab-1">
+                <div class="service-acc-head">
+                  <span class="service-acc-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span>
+                  <div class="service-acc-titles">
+                    <span class="tag-label service-acc-tag" data-i18n="services.ecommerce.label">02 — Vente en
+                      ligne</span>
+                    <h3 class="service-acc-title" data-i18n="services.ecommerce.title">E-COMMERCE</h3>
+                  </div>
+                </div>
+                <span class="service-acc-arrow" data-magnetic data-strength="0.35">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </span>
+              </button>
+              <div class="service-acc-panel" id="service-panel-1" role="tabpanel" aria-labelledby="service-tab-1">
+                <div class="service-acc-panel-inner">
+                  <p class="service-acc-desc" data-i18n="services.ecommerce.description">
+                    Des parcours de vente pensés pour présenter vos produits, fluidifier l'expérience d'achat et
+                    accompagner durablement votre croissance commerciale.
+                  </p>
+                  <div class="service-acc-chips" data-i18n-list="services.ecommerce.chips">
+                    <span class="service-chip" data-i18n-item>Catalogue &amp; Variantes</span>
+                    <span class="service-chip" data-i18n-item>Tunnel de commande fluide</span>
+                    <span class="service-chip" data-i18n-item>Paiements &amp; Livraison</span>
+                    <span class="service-chip" data-i18n-item>Back-office intuitif</span>
+                  </div>
+                  <div class="service-acc-cta">
+                    <button class="btn-link" type="button" data-magnetic onclick="scrollToId('contact')">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="services.cta">Discuter de ce service</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Service 03 -->
+            <article class="service-acc-item" data-service-index="2" data-theme="dark">
+              <button class="service-acc-trigger" type="button" role="tab" aria-expanded="false"
+                aria-controls="service-panel-2" id="service-tab-2">
+                <div class="service-acc-head">
+                  <span class="service-acc-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
+                  <div class="service-acc-titles">
+                    <span class="tag-label service-acc-tag" data-i18n="services.applications.label">03 — Applications
+                      métier</span>
+                    <h3 class="service-acc-title" data-i18n="services.applications.title">APPLICATIONS MÉTIER</h3>
+                  </div>
+                </div>
+                <span class="service-acc-arrow" data-magnetic data-strength="0.35">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </span>
+              </button>
+              <div class="service-acc-panel" id="service-panel-2" role="tabpanel" aria-labelledby="service-tab-2">
+                <div class="service-acc-panel-inner">
+                  <p class="service-acc-desc" data-i18n="services.applications.description">
+                    Des outils sur mesure pour digitaliser vos processus internes, centraliser vos opérations et
+                    simplifier votre quotidien avec une fiabilité maximale.
+                  </p>
+                  <div class="service-acc-chips" data-i18n-list="services.applications.chips">
+                    <span class="service-chip" data-i18n-item>CRM &amp; Portails métier</span>
+                    <span class="service-chip" data-i18n-item>Automatisation de flux</span>
+                    <span class="service-chip" data-i18n-item>Tableaux de bord temps réel</span>
+                    <span class="service-chip" data-i18n-item>Accès multi-rôles</span>
+                  </div>
+                  <div class="service-acc-cta">
+                    <button class="btn-link" type="button" data-magnetic onclick="scrollToId('contact')">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="services.cta">Discuter de ce service</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Service 04 -->
+            <article class="service-acc-item" data-service-index="3" data-theme="sand">
+              <button class="service-acc-trigger" type="button" role="tab" aria-expanded="false"
+                aria-controls="service-panel-3" id="service-tab-3">
+                <div class="service-acc-head">
+                  <span class="service-acc-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span>
+                  <div class="service-acc-titles">
+                    <span class="tag-label service-acc-tag" data-i18n="services.products.label">04 — Solutions sur
+                      mesure</span>
+                    <h3 class="service-acc-title" data-i18n="services.products.title">LOGICIEL SUR MESURE</h3>
+                  </div>
+                </div>
+                <span class="service-acc-arrow" data-magnetic data-strength="0.35">
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </span>
+              </button>
+              <div class="service-acc-panel" id="service-panel-3" role="tabpanel" aria-labelledby="service-tab-3">
+                <div class="service-acc-panel-inner">
+                  <p class="service-acc-desc" data-i18n="services.products.description">
+                    Un logiciel ou produit SaaS pensé pour votre besoin précis, de la conception architecturale jusqu'au
+                    lancement et à l'évolution continue.
+                  </p>
+                  <div class="service-acc-chips" data-i18n-list="services.products.chips">
+                    <span class="service-chip" data-i18n-item>Architecture évolutive</span>
+                    <span class="service-chip" data-i18n-item>API &amp; Base de données</span>
+                    <span class="service-chip" data-i18n-item>MVP &amp; Produit SaaS</span>
+                    <span class="service-chip" data-i18n-item>Scalabilité &amp; Sécurité</span>
+                  </div>
+                  <div class="service-acc-cta">
+                    <button class="btn-link" type="button" data-magnetic onclick="scrollToId('contact')">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="services.cta">Discuter de ce service</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Panneau de détails complet et structuré à droite (toutes les infos visibles sans scroller) -->
+          <div class="services-stage-preview" id="servicesStagePreview" data-active-theme="light">
+            <div class="stage-preview-card">
+              <div class="stage-preview-header">
+                <div class="stage-preview-head-left">
+                  <div class="preview-icon-hero" id="stagePreviewIcon">
+                    <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <span class="stage-preview-badge" id="stagePreviewBadge">PRÉSENCE DIGITALE</span>
+                    <h3 class="stage-preview-title" id="stagePreviewTitle">SITES VITRINES</h3>
+                  </div>
+                </div>
+                <span class="stage-preview-num" id="stagePreviewNum">01</span>
+              </div>
+
+              <div class="stage-preview-body">
+                <div class="stage-preview-chips" id="stagePreviewChips">
+                  <span class="stage-preview-chip">Design sur mesure</span>
+                  <span class="stage-preview-chip">Motion Design 60fps</span>
+                  <span class="stage-preview-chip">SEO &amp; Performance</span>
+                  <span class="stage-preview-chip">Responsive Mobile-First</span>
+                </div>
+              </div>
+
+              <div class="stage-preview-footer">
+                <span class="stage-preview-status"><span class="status-dot"></span> <span
+                    data-i18n="services.architecture">Architecture sur mesure</span></span>
+                <button class="btn-link stage-preview-cta" type="button" data-magnetic onclick="scrollToId('contact')">
+                  <span class="btn-magnetic-inner">
+                    <span id="stagePreviewCtaText" data-i18n="services.cta">Discuter de ce service</span>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 4 : RÉALISATIONS (CAPTURES 2 & 3 — 3-CARDS HORIZONTAL SCROLL)
+         =================================================================== -->
+    <section id="work" class="work-scroll-section">
+      <div class="work-sticky-viewport" id="workStickyViewport">
+        <div class="nxt-wrap work-stage-inner">
+          <div class="work-header">
+            <div>
+              <span class="tag-label text-terracotta section-kicker" data-i18n="work.label">Réalisations
+                sélectionnées</span>
+              <h2 class="display-md text-navy" data-i18n="work.title">RÉALISATIONS.</h2>
+            </div>
+            <div class="work-header-right">
+              <div class="work-controls" aria-label="Contrôles du carrousel de projets">
+                <button type="button" class="work-nav-btn" id="workPrevBtn" data-magnetic data-strength="0.35"
+                  aria-label="Projet précédent">
+                  <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <div class="work-counter">
+                  <span id="workCurrentIndex">01</span>
+                  <span class="work-counter-sep">/</span>
+                  <span>06</span>
+                </div>
+                <button type="button" class="work-nav-btn" id="workNextBtn" data-magnetic data-strength="0.35"
+                  aria-label="Projet suivant">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCÈNE 3-CARDS : Gauche (dépassée), Centre (principale plus grande), Droite (à venir) -->
+          <div class="work-carousel-stage" id="workCarouselStage">
+            <div class="work-cards-track" id="workCardsTrack">
+              <!-- Card 01 : LAWTAN (Web Full Stack) -->
+              <article class="work-card dark is-active" data-work-index="0" tabindex="0">
+                <div class="work-card-glow" aria-hidden="true"></div>
+                <div class="work-card-top">
+                  <div class="work-card-meta">
+                    <span class="tag-label text-terracotta">01</span>
+                    <span class="work-meta-line"></span>
+                    <span class="tag-label work-cat" data-i18n="work.categories.lawtan">Agro-industrie · Web</span>
+                  </div>
+                  <span class="work-card-status"><i class="fa-solid fa-check-double" aria-hidden="true"></i> <span
+                      data-i18n="work.statuses.lawtan">Projet clôturé</span></span>
+                </div>
+
+                <div class="work-card-body">
+                  <h3>LAWTAN</h3>
+                  <p class="tag-label work-subtitle" data-i18n="work.titles.lawtan">Vitrine, marketplace &amp; circuit
+                    de devis</p>
+                  <p class="work-desc" data-i18n="work.descriptions.lawtan">
+                    Reprise et enrichissement d'une plateforme numérique dédiée à la filière rizicole au Sénégal :
+                    vitrine publique, marketplace, tunnel de commande, demandes de devis WhatsApp et back-office
+                    administrateur.
+                  </p>
+                </div>
+
+                <div class="work-card-footer">
+                  <div class="work-tech-list">
+                    <span class="tech-tag">Angular 21</span>
+                    <span class="tech-tag">Spring Boot 4</span>
+                    <span class="tech-tag">Java 21</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 02 : POINTAGE NFC (Web & Terminaux NFC) -->
+              <article class="work-card light is-next" data-work-index="1" tabindex="0">
+                <div class="work-card-glow" aria-hidden="true"></div>
+                <div class="work-card-top">
+                  <div class="work-card-meta">
+                    <span class="tag-label text-terracotta">02</span>
+                    <span class="work-meta-line"></span>
+                    <span class="tag-label work-cat" data-i18n="work.categories.nfc">SaaS RH · Multi-tenant</span>
+                  </div>
+                  <span class="work-card-status"><i class="fa-solid fa-wifi" aria-hidden="true"></i> <span
+                      data-i18n="work.statuses.nfc">Web NFC · Terminaux</span></span>
+                </div>
+
+                <div class="work-card-body">
+                  <h3>POINTAGE NFC</h3>
+                  <p class="tag-label work-subtitle" data-i18n="work.titles.nfc">Gestion RH &amp; suivi des présences
+                  </p>
+                  <p class="work-desc" data-i18n="work.descriptions.nfc">
+                    Application multi-tenant isolant les données de plusieurs entreprises : création d'entreprise,
+                    invitations email, gestion des employés, tableau de bord RH et lecture NFC opérationnelle via Web
+                    NFC Reader.
+                  </p>
+                </div>
+
+                <div class="work-card-footer">
+                  <div class="work-tech-list">
+                    <span class="tech-tag">Angular 21</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Web NFC</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 03 : IMMOSN (Web Full Stack) -->
+              <article class="work-card dark is-far-right" data-work-index="2" tabindex="0">
+                <div class="work-card-glow" aria-hidden="true"></div>
+                <div class="work-card-top">
+                  <div class="work-card-meta">
+                    <span class="tag-label text-terracotta">03</span>
+                    <span class="work-meta-line"></span>
+                    <span class="tag-label work-cat" data-i18n="work.categories.immosn">Immobilier · Full
+                      Lifecycle</span>
+                  </div>
+                  <span class="work-card-status"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> <span
+                      data-i18n="work.statuses.immosn">Plateforme</span></span>
+                </div>
+
+                <div class="work-card-body">
+                  <h3>IMMOSN</h3>
+                  <p class="tag-label work-subtitle" data-i18n="work.titles.immosn">Plateforme de gestion immobilière
+                  </p>
+                  <p class="work-desc" data-i18n="work.descriptions.immosn">
+                    Plateforme centralisant annonces, utilisateurs, visites et contrats. Prise en charge complète de la
+                    modélisation à la supervision : API REST sécurisée par JWT, Docker, CI/CD et PostgreSQL.
+                  </p>
+                </div>
+
+                <div class="work-card-footer">
+                  <div class="work-tech-list">
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                  </div>
+                  <div class="work-links">
+                    <a class="btn-link" data-magnetic href="https://github.com/mouhamet07/immosn" target="_blank"
+                      rel="noopener">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="work.github">Code GitHub</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 04 : RESTOFLOW (Web Multi-module) -->
+              <article class="work-card light is-far-right" data-work-index="3" tabindex="0">
+                <div class="work-card-glow" aria-hidden="true"></div>
+                <div class="work-card-top">
+                  <div class="work-card-meta">
+                    <span class="tag-label text-terracotta">04</span>
+                    <span class="work-meta-line"></span>
+                    <span class="tag-label work-cat" data-i18n="work.categories.brasil">Restauration ·
+                      Multi-module</span>
+                  </div>
+                  <span class="work-card-status"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Production</span>
+                </div>
+
+                <div class="work-card-body">
+                  <h3>RESTOFLOW</h3>
+                  <p class="tag-label work-subtitle" data-i18n="work.titles.brasil">Application de commande en ligne</p>
+                  <p class="work-desc" data-i18n="work.descriptions.brasil">
+                    Plateforme multi-module partageant une base SQL commune : catalogue, commandes, retrait/livraison,
+                    paiement Wave / Orange Money, zones de livraison et statistiques journalières manager.
+                  </p>
+                </div>
+
+                <div class="work-card-footer">
+                  <div class="work-tech-list">
+                    <span class="tech-tag">ASP.NET MVC</span>
+                    <span class="tech-tag">Symfony</span>
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">SQL</span>
+                  </div>
+                  <div class="work-links">
+                    <a class="btn-link" data-magnetic href="https://brasil-burger.onrender.com/" target="_blank"
+                      rel="noopener">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="work.view">Voir le site</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 05 : EDUCRM (Web Python) -->
+              <article class="work-card dark is-far-right" data-work-index="4" tabindex="0">
+                <div class="work-card-glow" aria-hidden="true"></div>
+                <div class="work-card-top">
+                  <div class="work-card-meta">
+                    <span class="tag-label text-cobalt">05</span>
+                    <span class="work-meta-line cobalt"></span>
+                    <span class="tag-label work-cat" data-i18n="work.categories.educrm">Éducation · CRM Python</span>
+                  </div>
+                  <span class="work-card-status"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> <span
+                      data-i18n="work.statuses.educrm">CRM Métier</span></span>
+                </div>
+
+                <div class="work-card-body">
+                  <h3>EDUCRM</h3>
+                  <p class="tag-label work-subtitle" data-i18n="work.titles.educrm">Plateforme de gestion académique</p>
+                  <p class="work-desc" data-i18n="work.descriptions.educrm">
+                    Plateforme de gestion académique structurée avec Flask Blueprints : authentification, gestion des
+                    étudiants, centralisation des inscriptions et tableau de bord statistique.
+                  </p>
+                </div>
+
+                <div class="work-card-footer">
+                  <div class="work-tech-list">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Blueprint</span>
+                  </div>
+                  <div class="work-links">
+                    <a class="btn-link" data-magnetic href="https://github.com/mouhamet07/edu.crm" target="_blank"
+                      rel="noopener">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="work.github">Code GitHub</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 06 : BADWALLET (Mobile Flutter & Dart) -->
+              <article class="work-card light is-far-right" data-work-index="5" tabindex="0">
+                <div class="work-card-glow" aria-hidden="true"></div>
+                <div class="work-card-top">
+                  <div class="work-card-meta">
+                    <span class="tag-label text-terracotta">06</span>
+                    <span class="work-meta-line"></span>
+                    <span class="tag-label work-cat" data-i18n="work.categories.badwallet">Mobile · Flutter &amp;
+                      Dart</span>
+                  </div>
+                  <span class="work-card-status"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+                    Mobile App</span>
+                </div>
+
+                <div class="work-card-body">
+                  <h3>BADWALLET</h3>
+                  <p class="tag-label work-subtitle" data-i18n="work.titles.badwallet">Portefeuille digital mobile</p>
+                  <p class="work-desc" data-i18n="work.descriptions.badwallet">
+                    Application mobile de portefeuille digital développée avec Flutter &amp; Dart : consultation du
+                    solde en temps réel, transferts, réception d'argent et historique détaillé des transactions.
+                  </p>
+                </div>
+
+                <div class="work-card-footer">
+                  <div class="work-tech-list">
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">Dart</span>
+                    <span class="tech-tag">Mobile</span>
+                  </div>
+                  <div class="work-links">
+                    <a class="btn-link" data-magnetic href="https://github.com/mouhamet07/BadWallet-App" target="_blank"
+                      rel="noopener">
+                      <span class="btn-magnetic-inner">
+                        <span data-i18n="work.github">Code GitHub</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Barre de progression et pagination du scroll horizontal des projets -->
+          <div class="work-progress-footer">
+            <div class="work-progress-dots" id="workProgressDots" role="tablist" aria-label="Sélectionner un projet">
+              <button type="button" class="work-dot is-active" data-work-goto="0"
+                aria-label="Projet 01 LAWTAN"><span>01</span></button>
+              <button type="button" class="work-dot" data-work-goto="1"
+                aria-label="Projet 02 Pointage NFC"><span>02</span></button>
+              <button type="button" class="work-dot" data-work-goto="2"
+                aria-label="Projet 03 ImmoSN"><span>03</span></button>
+              <button type="button" class="work-dot" data-work-goto="3"
+                aria-label="Projet 04 RestoFlow"><span>04</span></button>
+              <button type="button" class="work-dot" data-work-goto="4"
+                aria-label="Projet 05 EduCRM"><span>05</span></button>
+              <button type="button" class="work-dot" data-work-goto="5"
+                aria-label="Projet 06 BadWallet"><span>06</span></button>
+            </div>
+            <div class="work-progress-track" aria-hidden="true">
+              <div class="work-progress-fill" id="workProgressFill"></div>
+            </div>
+            <span class="tag-label work-scroll-hint" data-i18n="work.scrollHint">
+              <i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> Scrollez pour faire défiler les projets
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 5 : PHILOSOPHIE (MOTION DESIGN INTERACTIF & SCROLL-DRIVEN)
+         =================================================================== -->
+    <section id="philosophy" class="reveal-section">
+      <!-- Halo lumineux interactif qui suit la souris + anneaux d'arrière-plan en mouvement -->
+      <div class="philosophy-ambient" aria-hidden="true">
+        <div class="philosophy-spotlight" id="philosophySpotlight"></div>
+        <div class="philosophy-orbit-ring ring-1"></div>
+        <div class="philosophy-orbit-ring ring-2"></div>
+      </div>
+
+      <div class="nxt-wrap">
+        <div class="philosophy-grid">
+          <div class="philosophy-left">
+            <span class="tag-label text-terracotta section-kicker" data-reveal
+              data-i18n="philosophy.label">Philosophie</span>
+            <h2 class="display-lg text-white philosophy-headline" data-reveal data-i18n="philosophy.title"
+              data-i18n-html="true">
+              NOUS NE FAISONS<br />PAS QUE CONSTRUIRE.<br /><span class="text-terracotta">NOUS</span> RÉSOLVONS.
+            </h2>
+
+            <!-- Jauge dynamique des 3 piliers -->
+            <div class="philosophy-status-bar" data-reveal aria-hidden="true">
+              <span class="status-pulse"></span>
+              <span class="tag-label" id="philosophyActiveTag">01 · COMPRENDRE</span>
+            </div>
+
+            <div class="philosophy-watermark" id="philosophyWatermark" data-reveal aria-hidden="true">
+              <span class="nxt-char" style="--char-idx:0">N</span><span class="nxt-char"
+                style="--char-idx:1">X</span><span class="nxt-char" style="--char-idx:2">T</span>
+            </div>
+          </div>
+
+          <div class="philosophy-pillars-wrap">
+            <!-- Ligne verticale conductrice qui s'illumine d'un pilier à l'autre -->
+            <div class="philosophy-rail" aria-hidden="true">
+              <div class="philosophy-rail-fill" id="philosophyRailFill"></div>
+            </div>
+
+            <div class="philosophy-pillars" id="philosophyPillars" data-stagger>
+              <!-- Pilier 01 -->
+              <article class="philosophy-pillar is-active" data-pillar-index="0" data-reveal tabindex="0">
+                <div class="pillar-glow" aria-hidden="true"></div>
+                <div class="pillar-icon" data-magnetic data-strength="0.35">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <circle class="svg-radar-ring" cx="14" cy="14" r="10" stroke="#D95D39" stroke-width="1.5"
+                      stroke-dasharray="4 3" />
+                    <circle class="svg-radar-pulse" cx="14" cy="14" r="4" fill="#D95D39" opacity=".3" />
+                    <circle cx="14" cy="14" r="2" fill="#D95D39" />
+                  </svg>
+                </div>
+                <div class="pillar-body">
+                  <div class="pillar-head">
+                    <span class="tag-label text-terracotta pillar-num">01</span>
+                    <h3 data-i18n="philosophy.items.0.title">COMPRENDRE</h3>
+                    <span class="pillar-live-dot" aria-hidden="true"></span>
+                  </div>
+                  <p data-i18n="philosophy.items.0.description">Comprendre le problème avant de choisir la technologie.
+                  </p>
+                  <div class="pillar-meter" aria-hidden="true"><span class="pillar-meter-bar"></span></div>
+                </div>
+              </article>
+
+              <!-- Pilier 02 -->
+              <article class="philosophy-pillar" data-pillar-index="1" data-reveal tabindex="0">
+                <div class="pillar-glow" aria-hidden="true"></div>
+                <div class="pillar-icon" data-magnetic data-strength="0.35">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <rect x="4" y="4" width="20" height="14" rx="2" stroke="#D95D39" stroke-width="1.5" />
+                    <path d="M9 24h10M14 18v6" stroke="#D95D39" stroke-width="1.5" stroke-linecap="round" />
+                    <path class="svg-screen-line-1" d="M9 10h10" stroke="#D95D39" stroke-width="1.5"
+                      stroke-linecap="round" />
+                    <path class="svg-screen-line-2" d="M9 13h6" stroke="#D95D39" stroke-width="1.5"
+                      stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div class="pillar-body">
+                  <div class="pillar-head">
+                    <span class="tag-label text-terracotta pillar-num">02</span>
+                    <h3 data-i18n="philosophy.items.1.title">CONCEVOIR</h3>
+                    <span class="pillar-live-dot" aria-hidden="true"></span>
+                  </div>
+                  <p data-i18n="philosophy.items.1.description">Imaginer une expérience simple et intuitive.</p>
+                  <div class="pillar-meter" aria-hidden="true"><span class="pillar-meter-bar"></span></div>
+                </div>
+              </article>
+
+              <!-- Pilier 03 -->
+              <article class="philosophy-pillar" data-pillar-index="2" data-reveal tabindex="0">
+                <div class="pillar-glow" aria-hidden="true"></div>
+                <div class="pillar-icon" data-magnetic data-strength="0.35">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <path class="svg-graph-path" d="M6 20l6-12 4 8 3-4 3 8" stroke="#D95D39" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                    <circle class="svg-radar-pulse" cx="22" cy="8" r="2.5" fill="#D95D39" opacity=".4" />
+                    <circle cx="22" cy="8" r="1" fill="#D95D39" />
+                  </svg>
+                </div>
+                <div class="pillar-body">
+                  <div class="pillar-head">
+                    <span class="tag-label text-terracotta pillar-num">03</span>
+                    <h3 data-i18n="philosophy.items.2.title">CONSTRUIRE</h3>
+                    <span class="pillar-live-dot" aria-hidden="true"></span>
+                  </div>
+                  <p data-i18n="philosophy.items.2.description">Construire une solution fiable et évolutive.</p>
+                  <div class="pillar-meter" aria-hidden="true"><span class="pillar-meter-bar"></span></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 6 : PROCESSUS (CAPTURES 4, 5 & 6 — HORIZONTAL SCROLL PROGRESSIF)
+         =================================================================== -->
+    <section id="process" class="process-scroll-section">
+      <div class="process-sticky-viewport" id="processStickyViewport">
+        <div class="nxt-wrap process-stage-inner">
+          <div class="process-header">
+            <div>
+              <span class="tag-label text-terracotta section-kicker" data-i18n="process.label">Processus</span>
+              <h2 class="display-md text-navy" data-i18n="process.title" data-i18n-html="true">DE L'IDÉE<br />À
+                L'IMPACT.</h2>
+            </div>
+            <div class="process-header-meta">
+              <p data-i18n="process.intro">Une méthode claire, du brief jusqu'au lancement et au-delà.</p>
+              <div class="process-step-indicator">
+                <span class="tag-label text-terracotta" id="processActiveLabel">ÉTAPE 01 / 05</span>
+                <span class="process-percent" id="processPercentLabel">20%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIMELINE HORIZONTALE SCROLL-DRIVEN (Captures 5 & 6) -->
+          <div class="process-timeline-viewport" id="processTimelineViewport">
+            <div class="process-timeline-track" id="processTimelineTrack">
+              <!-- Barre horizontale de fond + barre de remplissage progressive -->
+              <div class="process-line-container" aria-hidden="true">
+                <div class="process-line-bg"></div>
+                <div class="process-line-progress" id="processLineProgress"></div>
+              </div>
+
+              <!-- Les 5 étapes qui s'illuminent et apparaissent progressivement selon le scroll -->
+              <div class="process-nodes-grid" id="processNodesGrid">
+                <!-- Étape 01 (Visible dès l'arrivée — Capture 5) -->
+                <article class="process-node is-reached is-current" data-step-index="0" tabindex="0">
+                  <div class="process-node-marker">
+                    <span class="node-ring"></span>
+                    <span class="node-core"></span>
+                  </div>
+                  <div class="process-node-content">
+                    <span class="tag-label text-terracotta process-node-num">01</span>
+                    <h3 data-i18n="process.steps.0.title">DÉCOUVRIR</h3>
+                    <p data-i18n="process.steps.0.description">Comprendre le besoin, l'activité et les objectifs.</p>
+                  </div>
+                </article>
+
+                <!-- Étape 02 (Apparaît après le 1er scroll — Capture 6) -->
+                <article class="process-node" data-step-index="1" tabindex="0">
+                  <div class="process-node-marker">
+                    <span class="node-ring"></span>
+                    <span class="node-core"></span>
+                  </div>
+                  <div class="process-node-content">
+                    <span class="tag-label text-terracotta process-node-num">02</span>
+                    <h3 data-i18n="process.steps.1.title">FAÇONNER</h3>
+                    <p data-i18n="process.steps.1.description">Définir la structure, l'expérience et les
+                      fonctionnalités.</p>
+                  </div>
+                </article>
+
+                <!-- Étape 03 -->
+                <article class="process-node" data-step-index="2" tabindex="0">
+                  <div class="process-node-marker">
+                    <span class="node-ring"></span>
+                    <span class="node-core"></span>
+                  </div>
+                  <div class="process-node-content">
+                    <span class="tag-label text-terracotta process-node-num">03</span>
+                    <h3 data-i18n="process.steps.2.title">CONSTRUIRE</h3>
+                    <p data-i18n="process.steps.2.description">Développer et intégrer la solution avec précision.</p>
+                  </div>
+                </article>
+
+                <!-- Étape 04 -->
+                <article class="process-node" data-step-index="3" tabindex="0">
+                  <div class="process-node-marker">
+                    <span class="node-ring"></span>
+                    <span class="node-core"></span>
+                  </div>
+                  <div class="process-node-content">
+                    <span class="tag-label text-terracotta process-node-num">04</span>
+                    <h3 data-i18n="process.steps.3.title">LANCER</h3>
+                    <p data-i18n="process.steps.3.description">Tester, optimiser et mettre en ligne en toute sécurité.
+                    </p>
+                  </div>
+                </article>
+
+                <!-- Étape 05 -->
+                <article class="process-node" data-step-index="4" tabindex="0">
+                  <div class="process-node-marker">
+                    <span class="node-ring"></span>
+                    <span class="node-core"></span>
+                  </div>
+                  <div class="process-node-content">
+                    <span class="tag-label text-terracotta process-node-num">05</span>
+                    <h3 data-i18n="process.steps.4.title">ÉVOLUER</h3>
+                    <p data-i18n="process.steps.4.description">Faire évoluer la solution avec la croissance de
+                      l'activité.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-strip">
+            <span data-i18n="process.tech">Propulsé par des technologies modernes</span>
+            <div class="tech-strip-pills">
+              <span data-magnetic data-strength="0.35">React</span>
+              <span data-magnetic data-strength="0.35">Laravel</span>
+              <span data-magnetic data-strength="0.35">Spring Boot</span>
+              <span data-magnetic data-strength="0.35">Vue.js</span>
+              <span data-magnetic data-strength="0.35">PHP</span>
+              <span data-magnetic data-strength="0.35">Flask</span>
+              <span data-magnetic data-strength="0.35">PostgreSQL / MySQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAIR 2 : STUDIO & SPHÈRE 3D DU LOGO "N" (CAPTURE 7) +
+                  CTA ORANGE AVEC TRANSITION « COUVRIR » (CAPTURE 8)
+         =================================================================== -->
+    <div class="cover-transition-group" data-cover-group>
+      <!-- SECTION 7 : STUDIO & SPHÈRE 3D DU LOGO N (CAPTURE 7) -->
+      <section id="studio" class="cover-underlay-section reveal-section" data-cover-underlay>
+        <div class="nxt-wrap">
+          <!-- SCÈNE 3D CAPTURE 7 : LE "N" DU LOGO EN 3D QUI TOURNE DANS TOUS LES SENS AU CŒUR DE LA SPHÈRE ORBITALE -->
+          <div class="nexus-3d-showcase" data-reveal>
+            <div class="nexus-3d-header">
+              <span class="tag-label text-terracotta" data-i18n="studio.sphereLabel">Écosystème &amp; Ingénierie</span>
+              <h2 class="display-md text-navy" data-i18n="studio.sphereTitle">AU CŒUR DE NOTRE TECHNOLOGIE.</h2>
+              <p data-i18n="studio.sphereSubtitle">
+                Le « N » de NEXTERRA incarne notre moteur d'ingénierie : une maîtrise complète du développement
+                full-stack, des architectures logicielles, des bases de données et du DevOps.
+              </p>
+            </div>
+
+            <div class="nexus-globe-stage" id="nexusGlobeStage">
+              <!-- Fond grille de points (comme sur la Capture 7) -->
+              <div class="nexus-dot-matrix" aria-hidden="true"></div>
+
+              <!-- Canvas 3D des méridiens de la sphère et des anneaux orbitaux inclinés -->
+              <canvas id="nexusSphereCanvas" width="760" height="560" aria-hidden="true"></canvas>
+
+              <!-- LE "N" DU LOGO NEXTERRA EN 3D VOLUMÉTRIQUE QUI TOURNE SUR LUI-MÊME DANS TOUS LES SENS -->
+              <div class="nexterra-n3d-wrapper" id="nexterraN3DWrapper" aria-label="Logo N de NEXTERRA en 3D">
+                <div class="nexterra-n3d-core" id="nexterraN3DCore">
+                  <!-- Les couches d'extrusion 3D du N officiel sont injectées par JS pour un volume 3D véritable sous tous les angles -->
+                </div>
+                <div class="nexterra-n3d-halo" aria-hidden="true"></div>
+              </div>
+
+              <!-- Nœuds technologiques & DevOps regroupés et sans fond (icône + texte) -->
+              <div class="nexus-orbit-nodes" id="nexusOrbitNodes" aria-hidden="true">
+                <div class="orbit-node" data-lat="52" data-lon="0"><i class="fa-brands fa-angular"></i><span>Angular · React · Vue</span></div>
+                <div class="orbit-node" data-lat="36" data-lon="138"><i class="fa-brands fa-html5"></i><span>HTML / CSS · Bootstrap</span></div>
+                <div class="orbit-node" data-lat="24" data-lon="275"><i class="fa-brands fa-java"></i><span>Java · Spring Boot</span></div>
+                <div class="orbit-node" data-lat="12" data-lon="52"><i class="fa-brands fa-symfony"></i><span>PHP · Symfony · Laravel</span></div>
+                <div class="orbit-node" data-lat="0" data-lon="190"><i class="fa-brands fa-python"></i><span>Python / Flask · ASP.NET</span></div>
+                <div class="orbit-node" data-lat="-14" data-lon="327"><i class="fa-solid fa-mobile-screen-button"></i><span>Flutter · Dart</span></div>
+                <div class="orbit-node" data-lat="-26" data-lon="105"><i class="fa-solid fa-database"></i><span>PostgreSQL · MySQL</span></div>
+                <div class="orbit-node" data-lat="-38" data-lon="242"><i class="fa-brands fa-docker"></i><span>Docker · Kubernetes</span></div>
+                <div class="orbit-node" data-lat="-50" data-lon="20"><i class="fa-brands fa-jenkins"></i><span>Jenkins · Git · CI/CD</span></div>
+                <div class="orbit-node" data-lat="42" data-lon="215"><i class="fa-solid fa-chart-line"></i><span>Grafana · Prometheus</span></div>
+                <div class="orbit-node" data-lat="-22" data-lon="155"><i class="fa-brands fa-linux"></i><span>Linux</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTENU STUDIO & FONDATEUR -->
+          <div class="studio-grid">
+            <div>
+              <span class="tag-label text-terracotta section-kicker" data-reveal data-i18n="studio.label">Studio</span>
+              <h2 class="display-md text-navy" data-reveal data-i18n="studio.title" data-i18n-html="true">
+                NOUS NE VOULONS PAS SIMPLEMENT CONSTRUIRE,<br />
+                <span class="text-terracotta">NOUS VOULONS IMAGINER LE FUTUR.</span>
+              </h2>
+              <p class="studio-copy" data-reveal data-i18n="studio.description">
+                Depuis Dakar, nous concevons des expériences digitales ambitieuses pour transformer vos idées en produits concrets, durables et performants.
+              </p>
+
+              <div class="studio-badges" data-reveal data-i18n-list="studio.badges">
+                <span class="studio-pill" data-magnetic data-strength="0.38" data-i18n-item>Vision</span>
+                <span class="studio-pill" data-magnetic data-strength="0.38" data-i18n-item>Créativité</span>
+                <span class="studio-pill" data-magnetic data-strength="0.38" data-i18n-item>Exigence</span>
+                <span class="studio-pill" data-magnetic data-strength="0.38" data-i18n-item>Impact</span>
+                <span class="studio-pill" data-magnetic data-strength="0.38" data-i18n-item>Évolution</span>
+              </div>
+
+              <button class="btn-ghost" type="button" data-magnetic data-reveal onclick="scrollToId('contact')">
+                <span class="btn-magnetic-inner">
+                  <span data-i18n="studio.cta">Parlons de votre projet</span>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+
+            <div class="studio-cards" data-reveal>
+              <!-- Carte Fondateur -->
+              <div class="founder-card">
+                <div class="founder-card-orb" aria-hidden="true"></div>
+                <div class="founder-header">
+                  <img src="./assets/img/portrait.jpeg" alt="Mouhamet Thiam, fondateur de NEXTERRA"
+                    class="founder-avatar" width="68" height="68" loading="lazy" />
+                  <div>
+                    <p class="founder-name">Mouhamet Thiam</p>
+                    <p class="founder-role" data-i18n="studio.founderRole">Fondateur &amp; Créateur digital</p>
+                  </div>
+                </div>
+                <p class="founder-quote" data-i18n="studio.founder">
+                  « Une grande idée mérite plus qu'une simple exécution : une vision, une identité et une expérience qui marquent les esprits. »
+                </p>
+                <div class="founder-location">
+                  <span class="pulse-dot" aria-hidden="true"></span>
+                  <span>Dakar · Sénégal</span>
+                </div>
+              </div>
+
+              <!-- Carte Valeurs -->
+              <div class="values-card">
+                <h3 data-i18n="studio.valuesTitle">LES TECHNOLOGIES NE SONT QUE LE COMMENCEMENT.</h3>
+                <div class="values-list">
+                  <div class="value-item">
+                    <span class="value-dot" aria-hidden="true"></span>
+                    <div>
+                      <span class="tag-label text-navy" data-i18n="studio.values.0">VISION</span>
+                      <p data-i18n="studio.valueDescriptions.0">Imaginer avant de développer.</p>
+                    </div>
+                  </div>
+                  <div class="value-item">
+                    <span class="value-dot" aria-hidden="true"></span>
+                    <div>
+                      <span class="tag-label text-navy" data-i18n="studio.values.1">EXPÉRIENCE</span>
+                      <p data-i18n="studio.valueDescriptions.1">Des produits clairs, intuitifs et mémorables.</p>
+                    </div>
+                  </div>
+                  <div class="value-item">
+                    <span class="value-dot" aria-hidden="true"></span>
+                    <div>
+                      <span class="tag-label text-navy" data-i18n="studio.values.2">AMBITION</span>
+                      <p data-i18n="studio.valueDescriptions.2">Des solutions conçues pour durer et évoluer.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8 : ORANGE CTA (CAPTURE 8 — EFFET COUVRIR POWERPOINT SUR STUDIO) -->
+      <section id="cta" class="cover-overlay-section reveal-section" data-cover-overlay>
+        <div class="cover-edge-highlight light" aria-hidden="true"></div>
+        <div class="cta-orbit cta-orbit-1" aria-hidden="true"></div>
+        <div class="cta-orbit cta-orbit-2" aria-hidden="true"></div>
+        <div class="cta-orbit cta-orbit-3" aria-hidden="true"></div>
+
+        <div class="nxt-wrap cta-inner">
+          <div class="cta-content">
+            <h2 class="display-xl text-white" data-reveal data-i18n="cta.first">VOTRE PROCHAIN</h2>
+            <h2 class="display-xl cta-title-muted" data-reveal data-i18n="cta.second">PROJET DIGITAL</h2>
+            <h2 class="display-xl text-white" data-reveal data-i18n="cta.third">COMMENCE ICI.</h2>
+
+            <p class="cta-sub" data-reveal data-i18n="cta.copy">Parlons de ce que vous voulez construire.</p>
+
+            <div class="cta-buttons" data-reveal>
+              <button class="btn-white-cta" type="button" data-magnetic onclick="scrollToId('contact')">
+                <span class="btn-magnetic-inner">
+                  <span data-i18n="cta.start">Démarrer un projet</span>
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+              </button>
+              <button class="btn-ghost-light" type="button" data-magnetic onclick="scrollToId('work')">
+                <span class="btn-magnetic-inner">
+                  <span data-i18n="cta.work">Voir nos réalisations</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         SECTION 9 : CONTACT
+         =================================================================== -->
+    <section id="contact" class="reveal-section">
+      <div class="nxt-wrap">
+        <div class="contact-grid">
+          <div>
+            <span class="tag-label text-terracotta section-kicker" data-reveal data-i18n="contact.label">Contact</span>
+            <h2 class="display-md text-navy" data-reveal data-i18n="contact.title" data-i18n-html="true">
+              CONSTRUISONS<br />QUELQUE CHOSE.
+            </h2>
+            <p class="contact-intro" data-reveal data-i18n="contact.intro">
+              Vous avez une idée, un projet ou un problème à résoudre ? Parlons-en.
+            </p>
+
+            <div class="contact-info-cards" data-reveal>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="contact-info-label" data-i18n="contact.location">Localisation</p>
+                  <p class="contact-info-val" data-i18n="contact.locationValue">Dakar · Sénégal</p>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="fa-solid fa-earth-africa" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="contact-info-label" data-i18n="contact.market">Marché</p>
+                  <p class="contact-info-val" data-i18n="contact.marketValue">Construire pour l'Afrique &amp; au-delà
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <blockquote class="contact-quote" data-reveal data-i18n="contact.quote">
+              « Nous transformons les idées en expériences digitales, les problèmes en solutions. »
+            </blockquote>
+          </div>
+
+          <div class="contact-card-wrap" data-reveal>
+            <div class="contact-action-card">
+              <span class="tag-label text-terracotta" data-i18n="contact.exchange">Échange direct</span>
+              <h3 data-i18n="contact.title2">PARLONS DE VOTRE PROJET.</h3>
+              <p data-i18n="contact.description">
+                Écrivez-nous directement sur WhatsApp pour discuter de votre besoin et recevoir une première réponse
+                rapidement.
+              </p>
+
+              <a class="btn-primary" data-magnetic
+                href="https://wa.me/221785270408?text=Bonjour%20NEXTERRA%2C%20je%20souhaite%20discuter%20d%27un%20projet%20digital."
+                target="_blank" rel="noopener">
+                <span class="btn-magnetic-inner">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                  <span data-i18n="contact.whatsapp">Nous contacter sur WhatsApp</span>
+                </span>
+              </a>
+
+              <div class="contact-direct-links">
+                <a href="tel:+221785270408" data-magnetic data-strength="0.18">
+                  <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  <span>+221 78 527 04 08</span>
+                </a>
+                <a href="mailto:mouhamethiam7@gmail.com" data-magnetic data-strength="0.18">
+                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                  <span>mouhamethiam7@gmail.com</span>
+                </a>
+                <a href="https://www.instagram.com/mouhamet_7" target="_blank" rel="noopener" data-magnetic
+                  data-strength="0.18">
+                  <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                  <span>@mouhamet_7</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="nxt-wrap">
+      <div class="footer-grid">
+        <div>
+          <button class="logo" type="button" data-magnetic data-strength="0.2"
+            onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="NEXTERRA — Retour en haut">
+            <img src="./assets/img/logo-bgb-2.png" alt="NEXTERRA" width="160" height="58" loading="lazy" />
+          </button>
+          <p class="footer-tagline" data-i18n="footer.tagline">Build what comes next.</p>
+          <div class="footer-loc">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>Dakar · Sénégal</span>
+          </div>
+        </div>
+
+        <nav aria-label="Navigation du pied de page">
+          <span class="tag-label footer-heading" data-i18n="footer.navigation">Navigation</span>
+          <button type="button" data-magnetic data-strength="0.2" onclick="scrollToId('services')"
+            data-i18n="nav.services">Services</button>
+          <button type="button" data-magnetic data-strength="0.2" onclick="scrollToId('work')"
+            data-i18n="nav.work">Réalisations</button>
+          <button type="button" data-magnetic data-strength="0.2" onclick="scrollToId('process')"
+            data-i18n="nav.process">Processus</button>
+          <button type="button" data-magnetic data-strength="0.2" onclick="scrollToId('studio')"
+            data-i18n="nav.studio">Studio</button>
+          <button type="button" data-magnetic data-strength="0.2" onclick="scrollToId('contact')"
+            data-i18n="nav.contact">Contact</button>
+        </nav>
+
+        <div class="footer-col-right">
+          <div>
+            <span class="tag-label footer-heading" data-i18n="footer.networks">Réseaux</span>
+            <div class="footer-socials">
+              <a href="https://github.com/mouhamet07" target="_blank" rel="noopener" data-magnetic data-strength="0.2">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://www.instagram.com/mouhamet_7" target="_blank" rel="noopener" data-magnetic
+                data-strength="0.2">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.linkedin.com/in/mouhamet-thiam/" target="_blank" rel="noopener" data-magnetic
+                data-strength="0.2">
+                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          <button class="btn-primary" type="button" data-magnetic onclick="scrollToId('contact')">
+            <span class="btn-magnetic-inner">
+              <span data-i18n="footer.start">Démarrer un projet</span>
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.copyright">© 2026 NEXTERRA — Tous droits réservés.</span>
+        <span data-i18n="footer.note">Talent digital africain au service d'un marché mondial.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/script.js" defer></script>
+</body>
+
+</html>
