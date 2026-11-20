@@ -660,6 +660,11 @@ html[data-motion="high"] .cover-overlay-section {
 }
 
 @media (max-width: 1023px) {
+  #hero.cover-underlay-section {
+    position: relative;
+    top: auto;
+  }
+
   html[data-motion="high"] .cover-underlay-section {
     will-change: auto;
     filter: none !important;
