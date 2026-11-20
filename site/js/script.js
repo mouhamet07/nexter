@@ -829,20 +829,13 @@
   const coverGroups = Array.from(document.querySelectorAll('[data-cover-group]'));
 
   const updateCoverStickyOffsets = () => {
-    if (!isDesktop()) {
-      coverGroups.forEach((group) => {
-        const underlay = group.querySelector('[data-cover-underlay]');
-        if (!underlay) return;
-        underlay.style.removeProperty('--underlay-sticky-top');
-        underlay.style.filter = '';
-      });
-      return;
-    }
-
     const viewH = window.innerHeight;
     coverGroups.forEach((group) => {
       const underlay = group.querySelector('[data-cover-underlay]');
       if (!underlay) return;
+      if (!isDesktop()) {
+        underlay.style.filter = '';
+      }
       const h = underlay.offsetHeight;
       const stickyTop = h > viewH ? viewH - h : 0;
       underlay.style.setProperty('--underlay-sticky-top', `${stickyTop}px`);
