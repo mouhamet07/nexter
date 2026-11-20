@@ -413,8 +413,18 @@ header {
 
 header.scrolled {
   background: rgba(247, 245, 240, 0.88);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.08);
+}
+
+@media (max-width: 1023px) {
+  header {
+    background: rgba(247, 245, 240, 0.94);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
+  }
 }
 
 .nav-inner {
@@ -663,6 +673,20 @@ html[data-motion="high"] .cover-overlay-section {
   z-index: 3;
   min-height: 100vh;
   box-shadow: 0 -28px 80px rgba(8, 13, 26, 0.48);
+}
+
+@media (max-width: 1023px) {
+  html[data-motion="high"] .cover-underlay-section {
+    position: relative;
+    top: auto;
+    will-change: auto;
+    filter: none !important;
+  }
+
+  html[data-motion="high"] .cover-overlay-section {
+    min-height: auto;
+    box-shadow: none;
+  }
 }
 
 .cover-edge-highlight {
@@ -3095,11 +3119,15 @@ html[data-motion="high"] .cover-overlay-section {
     @media (max-width: 767px) {
       #hero {
         min-height: auto;
-        padding: calc(var(--header-height) + 28px) 0 56px;
+        padding: calc(var(--header-height) + 28px) 0 48px;
+      }
+
+      .hero-scroll-cue {
+        display: none;
       }
 
       .hero-layout {
-        gap: 32px;
+        gap: 28px;
       }
 
       .hero-content {
@@ -3112,6 +3140,8 @@ html[data-motion="high"] .cover-overlay-section {
 
       html[data-motion="high"] .work-sticky-viewport {
         align-items: flex-start;
+        height: calc(100vh - var(--header-height));
+        height: calc(100dvh - var(--header-height));
         padding: 20px 0 16px;
       }
 

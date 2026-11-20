@@ -829,6 +829,16 @@
   const coverGroups = Array.from(document.querySelectorAll('[data-cover-group]'));
 
   const updateCoverStickyOffsets = () => {
+    if (!isDesktop()) {
+      coverGroups.forEach((group) => {
+        const underlay = group.querySelector('[data-cover-underlay]');
+        if (!underlay) return;
+        underlay.style.removeProperty('--underlay-sticky-top');
+        underlay.style.filter = '';
+      });
+      return;
+    }
+
     const viewH = window.innerHeight;
     coverGroups.forEach((group) => {
       const underlay = group.querySelector('[data-cover-underlay]');
@@ -892,10 +902,10 @@
       }
     }
 
-    /* C. Transition « Couvrir » type PowerPoint (Desktop & Mobile) :
-          La section underlay reste fixe en plein écran pendant que la section
-          overlay glisse par-dessus pour la couvrir à 100%. */
-    if (effectiveMotion === 'high') {
+    /* C. Transition « Couvrir » type PowerPoint (Desktop uniquement) :
+          Sur mobile/tablette, les sections défilent naturellement sans sticky
+          pour éviter les bugs de compositing iOS Safari et les espaces blancs. */
+    if (effectiveMotion === 'high' && isDesktop()) {
       coverGroups.forEach((group) => {
         const underlay = group.querySelector('[data-cover-underlay]');
         const overlay = group.querySelector('[data-cover-overlay]');
@@ -913,6 +923,8 @@
         }
       });
     }
+
+    revealVisibleInViewport();
   };
 
   let scrollTicking = false;
@@ -1256,6 +1268,21 @@
   /* ------------------------------------------------------------------------
      10. MOTEUR D'APPARITION AU SCROLL ([data-reveal] & [data-stagger])
      ------------------------------------------------------------------------ */
+  let revealObserver = null;
+
+  const revealVisibleInViewport = () => {
+    const pending = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+    if (!pending.length) return;
+    const viewH = window.innerHeight || document.documentElement.clientHeight;
+    pending.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= viewH + 80) {
+        el.classList.add('is-visible');
+        if (revealObserver) revealObserver.unobserve(el);
+      }
+    });
+  };
+
   const initScrollReveals = () => {
     const revealEls = document.querySelectorAll('[data-reveal]');
     const staggerContainers = document.querySelectorAll('[data-stagger]');
@@ -1274,22 +1301,34 @@
       return;
     }
 
-    const observer = new IntersectionObserver(
+    /* Révéler immédiatement les éléments du Hero pour éviter tout état figé au chargement mobile */
+    document.querySelectorAll('#hero [data-reveal]').forEach((el, index) => {
+      el.style.setProperty('--reveal-delay', `${Math.min(index * 60, 240)}ms`);
+      el.classList.add('is-visible');
+    });
+
+    revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.01,
+        rootMargin: '0px 0px 80px 0px'
       }
     );
 
-    revealEls.forEach((el) => observer.observe(el));
+    revealEls.forEach((el) => {
+      if (!el.classList.contains('is-visible')) {
+        revealObserver.observe(el);
+      }
+    });
+
+    revealVisibleInViewport();
   };
 
   /* ------------------------------------------------------------------------
