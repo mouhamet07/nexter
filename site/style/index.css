@@ -1718,7 +1718,7 @@ html[data-motion="high"] .cover-overlay-section {
 
   @media (max-width: 1023px) {
     html[data-motion="high"] .work-scroll-section {
-      height: 380vh;
+      height: 540vh;
     }
   }
 
@@ -3192,6 +3192,10 @@ html[data-motion="high"] .cover-overlay-section {
         margin-bottom: 20px;
       }
 
+      .studio-badges .studio-pill:nth-child(5) {
+        display: none;
+      }
+
       #cta,
       html[data-motion="high"] #cta.cover-overlay-section {
         min-height: auto;
@@ -3228,8 +3232,23 @@ html[data-motion="high"] .cover-overlay-section {
       }
 
       .footer-grid {
-        gap: 28px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
         padding-bottom: 28px;
+        align-items: start;
+      }
+
+      .footer-grid > div:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-col-right {
+        display: contents;
+      }
+
+      .footer-col-right > .btn-primary {
+        grid-column: 1 / -1;
+        justify-self: start;
       }
     }
 
