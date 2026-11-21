@@ -3226,30 +3226,6 @@ html[data-motion="high"] .cover-overlay-section {
       .contact-quote {
         margin-top: 24px;
       }
-
-      footer {
-        padding: 44px 0 52px;
-      }
-
-      .footer-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 28px 20px;
-        padding-bottom: 28px;
-        align-items: start;
-      }
-
-      .footer-grid > div:first-child {
-        grid-column: 1 / -1;
-      }
-
-      .footer-col-right {
-        display: contents;
-      }
-
-      .footer-col-right > .btn-primary {
-        grid-column: 1 / -1;
-        justify-self: start;
-      }
     }
 
     /* ==========================================================================
@@ -3456,6 +3432,32 @@ html[data-motion="high"] .cover-overlay-section {
       flex-direction: column;
       gap: 24px;
       align-items: flex-start;
+    }
+
+    @media (max-width: 767px) {
+      footer {
+        padding: 44px 0 52px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+        padding-bottom: 28px;
+        align-items: start;
+      }
+
+      .footer-grid > div:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-col-right {
+        display: contents;
+      }
+
+      .footer-col-right > .btn-primary {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
     }
 
     .footer-socials {
